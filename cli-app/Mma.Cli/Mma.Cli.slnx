@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Mma.Cli.App/Mma.Cli.App.csproj" />
+  <Project Path="Mma.Cli.Shared/Mma.Cli.Shared.csproj" />
+</Solution>

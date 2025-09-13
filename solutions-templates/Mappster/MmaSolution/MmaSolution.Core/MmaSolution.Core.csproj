@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9" />
+  </ItemGroup>
+
+
+	
+  <ItemGroup>
+    <Generated Include="**\*.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MmaSolution.Common\MmaSolution.Common.csproj" />
+  </ItemGroup>
+  <Target Name="CleanGenerated">
+    <Delete Files="@(Generated)" />
+  </Target>
+
+</Project>

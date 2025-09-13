@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/0b9d6f65-0261-4439-b6ab-c5c2882f8f09/resourceGroups/goldenia-rg/providers/microsoft.insights/components/goldenia-app</ApplicationInsightsResourceId>
+    <UserSecretsId>4c5b977b-7aaf-494f-939c-c383b3b75f83</UserSecretsId>
+		<Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+    <PackageReference Include="AspNetCore.Scalar" Version="1.2.0" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="FluentEmail.Core" Version="3.0.2" />
+    <PackageReference Include="FluentEmail.Razor" Version="3.0.2" />
+    <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.9" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.3" />
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
+    <PackageReference Include="Serilog.Formatting.Elasticsearch" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="8.2.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.4" />
+
+    <PackageReference Include="Hangfire" Version="1.8.21" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.21" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.21" />
+    <PackageReference Include="Hangfire.Dashboard.BasicAuthorization" Version="1.0.2" />
+    
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Core" Version="9.0.0" />
+
+    <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
+
+    <PackageReference Include="Polly.Core" Version="8.6.3" />
+    <PackageReference Include="Polly.Extensions" Version="8.6.3" />
+   
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MmaSolution.EntityFramework\MmaSolution.EntityFramework.csproj" />
+    <ProjectReference Include="..\MmaSolution.Services\MmaSolution.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\resources\db\resources.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

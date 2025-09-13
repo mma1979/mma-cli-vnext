@@ -1,0 +1,10 @@
+﻿global using ICSharpCode.SharpZipLib.Zip;
+global using Mma.Cli.Shared.Consts;
+global using Mma.Cli.Shared.Helpers;
+global using Mma.Cli.Shared.Models;
+global using Newtonsoft.Json;
+global using System.Resources;
+global using System.Text;
+global using System.Text.RegularExpressions;
+global using RestSharp;
+global using System.Net;

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Binance.Net" Version="11.7.1" />
+    <PackageReference Include="Stripe.net" Version="48.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MmaSolution.Core\MmaSolution.Core.csproj" />
+  </ItemGroup>
+
+</Project>
