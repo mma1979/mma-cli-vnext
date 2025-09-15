@@ -3,14 +3,14 @@ namespace Mma.Cli.Shared.Builders;
 
 public class PropertiesBuilder
 {
-    public string SolutionPath { get; private set; }
-    public string SolutionName { get; private set; }
-    public string ProjectsPath { get; private set; }
-    public string Mapper { get; private set; }
-    public string EntityName { get; set; }
-    public string PropertyName { get; set; }
-    public string DataType { get; set; }
-    public bool Nullable { get; set; }
+    public string SolutionPath { get; private set; } = "";
+    public string SolutionName { get; private set; } = "";
+    public string ProjectsPath { get; private set; } = "";
+    public string Mapper { get; private set; } = "";
+    public string EntityName { get; set; } = "";
+    public string PropertyName { get; set; } = "";
+    public string DataType { get; set; } = "";
+    public bool Nullable { get; set; }  
     public bool RemoveFlag { get; set; }
 
     public PropertiesBuilder(string? solutionPath = null)
