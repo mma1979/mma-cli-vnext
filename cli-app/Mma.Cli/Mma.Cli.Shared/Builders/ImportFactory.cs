@@ -13,7 +13,9 @@ public class ImportFactory
     public ImportFactory()
     {
 
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
         ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
     }
 
     public static ImportFactory New(string[] args)

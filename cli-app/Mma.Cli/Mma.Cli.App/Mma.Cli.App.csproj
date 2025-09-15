@@ -12,9 +12,9 @@
 		<FileVersion>9.0.0</FileVersion>
 		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<AssemblyName>mma-cli</AssemblyName>
-		<AssemblyVersion>9.0.1</AssemblyVersion>
-		<Version>9.0.1</Version>
-		<PackageVersion>9.0.1</PackageVersion>
+		<AssemblyVersion>9.0.2</AssemblyVersion>
+		<Version>9.0.2</Version>
+		<PackageVersion>9.0.2</PackageVersion>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageIcon>mma3.png</PackageIcon>
