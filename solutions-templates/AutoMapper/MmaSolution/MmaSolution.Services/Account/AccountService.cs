@@ -1,31 +1,4 @@
-using MmaSolution.Common.Extensions;
-using MmaSolution.Core.Consts;
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.Core.Models;
-using MmaSolution.EntityFramework;
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using MmaSolution.Common.Helpers;
-using MmaSolution.Core.Models.Identity;
-using MmaSolution.Common.Infrastructure;
-
-using Dapper;
-using System.Data.Common;
-
-namespace MmaSolution.Services.Account
+﻿namespace MmaSolution.Services.Account
 {
     public class AccountService : IDisposable
     {
@@ -250,7 +223,7 @@ namespace MmaSolution.Services.Account
                 Data = otp
             };
         }
-        public async Task<AcknowledgeViewModel> ValidateOtp(string userName, long otp)
+        public async Task<AcknowledgeViewModel> ValidateOtp(string userName, string otp)
         {
             using var scope = _scopeFactory.CreateScope();
             using var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();

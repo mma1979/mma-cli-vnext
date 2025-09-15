@@ -1,8 +1,3 @@
-using NodaTime;
-
-using System;
-using System.Security.Cryptography;
-
 namespace MmaSolution.Common.Extensions
 {
     public static class GuidExtensions

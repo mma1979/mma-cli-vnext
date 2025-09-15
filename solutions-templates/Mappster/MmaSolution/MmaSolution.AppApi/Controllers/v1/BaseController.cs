@@ -1,15 +1,3 @@
-using MmaSolution.AppApi.Filters;
-using MmaSolution.Common;
-using MmaSolution.Core.Models;
-
-using Microsoft.AspNetCore.Mvc;
-
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using MmaSolution.Core.Consts;
-using MmaSolution.AppApi.Services;
-
 namespace MmaSolution.AppApi.Controllers.v1
 {
     [Route("api/[controller]")]
@@ -17,8 +5,8 @@ namespace MmaSolution.AppApi.Controllers.v1
     [LoggingFilter]
     public class BaseController : ControllerBase
     {
-        private Translator _translator;
-        public BaseController(Translator translator)
+        private Services.Translator _translator;
+        public BaseController(Services.Translator translator)
         {
             _translator = translator;
         }

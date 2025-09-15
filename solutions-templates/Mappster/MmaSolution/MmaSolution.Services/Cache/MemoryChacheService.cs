@@ -1,10 +1,3 @@
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
-using System;
-
 namespace MmaSolution.Services.Chache
 {
     public class MemoryChacheService : ICacheService

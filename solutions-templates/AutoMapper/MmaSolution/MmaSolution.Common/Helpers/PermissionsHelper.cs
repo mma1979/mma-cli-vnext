@@ -1,12 +1,4 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
-using MmaSolution.Common.Extensions;
-using MmaSolution.Common.Models;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MmaSolution.Common.Helpers
+﻿namespace MmaSolution.Common.Helpers
 {
     public class PermissionsHelper
     {

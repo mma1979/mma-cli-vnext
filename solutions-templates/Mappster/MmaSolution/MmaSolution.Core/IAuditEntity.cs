@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core;
 
 public interface IAuditEntity

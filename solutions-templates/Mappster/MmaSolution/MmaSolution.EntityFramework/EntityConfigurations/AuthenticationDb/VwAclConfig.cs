@@ -1,8 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using MmaSolution.Core.Database.Views;
-
 namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
 {
     internal class VwAclConfig: IEntityTypeConfiguration<VwAcl>

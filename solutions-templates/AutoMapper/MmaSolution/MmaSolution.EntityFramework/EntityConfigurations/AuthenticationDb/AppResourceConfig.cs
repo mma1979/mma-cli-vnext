@@ -1,10 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.Core.Enums;
-using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
-
-namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb;
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb;
 
 public class AppResourceConfig : IEntityTypeConfiguration<AppResource>
 {

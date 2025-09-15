@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace MmaSolution.Core.Models
+﻿namespace MmaSolution.Core.Models
 {
     public class ResultViewModel<T>
     {

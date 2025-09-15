@@ -1,17 +1,4 @@
-using AutoMapper;
-
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.Core.Database.Localization;
-using MmaSolution.Core.Database.LogTables;
-using MmaSolution.Core.Database.Notifications;
-using MmaSolution.Core.Database.Tables;
-using MmaSolution.Core.Models.Identity;
-using MmaSolution.Core.Models.Localization;
-using MmaSolution.Core.Models.LogTables;
-using MmaSolution.Core.Models.Notifications;
-using MmaSolution.Core.Models.Tables;
-
-namespace MmaSolution.Core
+﻿namespace MmaSolution.Core
 {
     public class MappingProfile : Profile
     {

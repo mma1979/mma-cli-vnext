@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core.Models.LogTables
 {
     public partial class AppLogModifyModel

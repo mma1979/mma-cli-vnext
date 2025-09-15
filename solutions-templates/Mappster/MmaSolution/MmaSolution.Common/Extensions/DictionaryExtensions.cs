@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MmaSolution.Common.Extensions
 {
     public static class DictionaryExtensions

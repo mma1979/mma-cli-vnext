@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-
-namespace MmaSolution.Common.Extensions
+﻿namespace MmaSolution.Common.Extensions
 {
     public static class IdentityExtensions
     {

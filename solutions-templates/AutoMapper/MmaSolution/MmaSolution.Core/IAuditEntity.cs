@@ -1,6 +1,4 @@
-using System;
-
-namespace MmaSolution.Core;
+﻿namespace MmaSolution.Core;
 
 public interface IAuditEntity
 {

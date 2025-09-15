@@ -1,13 +1,3 @@
-using MmaSolution.Core.Enums;
-
-using Microsoft.AspNetCore.Identity;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using MmaSolution.Core.Models.Identity;
-
-
 namespace MmaSolution.Core.Database.Identity
 {
     public partial class AppUser : IdentityUser<Guid>, IAuditEntity

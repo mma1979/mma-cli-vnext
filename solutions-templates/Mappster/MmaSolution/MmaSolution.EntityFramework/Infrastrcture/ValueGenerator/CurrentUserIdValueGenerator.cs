@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using System;
-
 namespace MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
 
 public class CurrentUserIdValueGenerator(IHttpContextAccessor accessor) : ValueGenerator<Guid>

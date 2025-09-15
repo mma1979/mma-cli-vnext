@@ -1,15 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
-using NUnit.Framework;
-
-using MmaSolution.AppApi.Controllers.v1.Account;
-
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-using MmaSolution.Core.Models;
-
 namespace MmaSolution.Tests
 {
     public class AccountControllerTests

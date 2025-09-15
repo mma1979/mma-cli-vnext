@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace MmaSolution.Core.Database.Identity;
+﻿namespace MmaSolution.Core.Database.Identity;
 
 public class AppAccessControlEntry:BaseEntity<Guid>
 {

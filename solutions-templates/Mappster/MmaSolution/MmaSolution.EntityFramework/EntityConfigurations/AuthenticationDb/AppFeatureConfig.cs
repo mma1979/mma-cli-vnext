@@ -1,9 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
-
 namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb;
 
 public class AppFeatureConfig : IEntityTypeConfiguration<AppFeature>

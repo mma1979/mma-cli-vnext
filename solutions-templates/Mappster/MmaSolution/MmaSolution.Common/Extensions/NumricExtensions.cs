@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-
 namespace MmaSolution.Common.Extensions
 {
     public static class NumricExtensions

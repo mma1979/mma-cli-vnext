@@ -1,8 +1,4 @@
-using FluentValidation;
-
-using MmaSolution.Core.Models.Identity;
-
-namespace MmaSolution.Core.Validations
+﻿namespace MmaSolution.Core.Validations
 {
     public class RoleValidator : AbstractValidator<AppRoleModifyModel>
     {

@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-
-using System;
-
 namespace MmaSolution.Core.Database.Identity;
 
 public class AppRoleClaim : IdentityRoleClaim<Guid>,IAuditEntity

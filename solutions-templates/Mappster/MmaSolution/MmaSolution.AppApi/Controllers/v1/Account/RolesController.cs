@@ -1,30 +1,12 @@
-using MmaSolution.Common;
-using MmaSolution.Core.Models;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MmaSolution.Core.Models.Identity;
-using System.Security.Claims;
-using MmaSolution.Services.Account;
-using MmaSolution.AppApi.Infrastrcture.Attributes;
-using MmaSolution.Core.Consts;
-using MmaSolution.AppApi.Services;
-
 namespace MmaSolution.AppApi.Controllers.v1;
 
 public class RolesController : BaseController
 {
     private readonly RoleService _roleService;
-    private readonly Translator _translator;
+    private readonly Services.Translator _translator;
     private readonly ILogger<RolesController> _logger;
 
-    public RolesController(RoleService roleService, Translator translator, ILogger<RolesController> logger) : base(translator)
+    public RolesController(RoleService roleService, Services.Translator translator, ILogger<RolesController> logger) : base(translator)
     {
         _roleService = roleService;
         _translator = translator;

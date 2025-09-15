@@ -1,14 +1,3 @@
-using MmaSolution.Common;
-using MmaSolution.Core.Validations;
-
-using FluentValidation.Results;
-
-using Newtonsoft.Json;
-
-using System;
-using System.Linq;
-using MmaSolution.Core.Models.Notifications;
-
 namespace MmaSolution.Core.Database.Notifications
 {
 

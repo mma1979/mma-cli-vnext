@@ -1,99 +1,33 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿namespace MmaSolution.AppApi.Controllers.v1.Settings;
 
-using MmaSolution.AppApi.Infrastrcture.Attributes;
-using MmaSolution.Services.Settings;
-
-using System;
-using System.Threading.Tasks;
-
-namespace MmaSolution.AppApi.Controllers.v1.Settings
+[Route("api/[controller]")]
+[ApiController]
+public class SysSettingsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SysSettingsController : ControllerBase
+    private readonly IConfiguration _configuration;
+    private readonly ILogger<SysSettingsController> _logger;
+
+    public SysSettingsController(IConfiguration configuration, ILogger<SysSettingsController> logger)
     {
-        private readonly IServiceScopeFactory _scopeFactory;
-        private readonly ILogger<SysSettingsController> _logger;
+        _configuration = configuration;
+        _logger = logger;
+    }
 
-        public SysSettingsController(IServiceScopeFactory scopeFactory, ILogger<SysSettingsController> logger)
+    [HttpGet("GetValue/{key}")]
+    [RequiredPermission("Read")]
+    public IActionResult GetValue(string key)
+    {
+        try
         {
-            _scopeFactory = scopeFactory;
-            _logger = logger;
+
+            var res = _configuration.GetValue<Dictionary<string, object>>(key);
+            return Ok(res);
         }
-
-        [HttpGet("GetValue/{key}")]
-        [RequiredPermission("Read")]
-        public IActionResult GetValue(string key)
+        catch (Exception ex)
         {
-            try
-            {
-                using var scope = _scopeFactory.CreateScope();
-                 var service = scope.ServiceProvider.GetRequiredService<SysSettingsService>();
-                var res = service.GetSetting(key);
-                return Ok(res);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"{DateTime.UtcNow} - {nameof(GetValue)}({key}): {ex.Message}", ex);
-                return BadRequest();
-            }
-        }
-
-        [HttpGet("GetValueAsync/{key}")]
-        [RequiredPermission("Read")]
-        public async Task<IActionResult> GetValueAsync(string key)
-        {
-            try
-            {
-                using var scope = _scopeFactory.CreateScope();
-                var service = scope.ServiceProvider.GetRequiredService<SysSettingsService>();
-                var res = await service.GetSettingAsync(key);
-                return Ok(res);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"{DateTime.UtcNow} - {nameof(GetValueAsync)}({key}): {ex.Message}", ex);
-                return BadRequest();
-            }
-        }
-
-
-        [HttpGet("GetDict")]
-        [RequiredPermission("Read")]
-        public IActionResult GetDict([FromQuery]string keys)
-        {
-            try
-            {
-                using var scope = _scopeFactory.CreateScope();
-                var service = scope.ServiceProvider.GetRequiredService<SysSettingsService>();
-                var res = service.GetSettings(keys);
-                return Ok(res);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"{DateTime.UtcNow} - {nameof(GetDict)}([{string.Join(',', keys)}]): {ex.Message}", ex);
-                return BadRequest();
-            }
-        }
-
-        [HttpGet("GetDictAsync")]
-        [RequiredPermission("Read")]
-        public async Task< IActionResult> GetDictAsync([FromQuery] string keys)
-        {
-            try
-            {
-                using var scope = _scopeFactory.CreateScope();
-                var service = scope.ServiceProvider.GetRequiredService<SysSettingsService>();
-                var res = await service.GetSettingsAsync(keys);
-                return Ok(res);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"{DateTime.UtcNow} - {nameof(GetDictAsync)}([{string.Join(',', keys)}]): {ex.Message}", ex);
-                return BadRequest();
-            }
+            _logger.LogError($"{DateTime.UtcNow} - {nameof(GetValue)}({key}): {ex.Message}", ex);
+            return BadRequest();
         }
     }
+
 }

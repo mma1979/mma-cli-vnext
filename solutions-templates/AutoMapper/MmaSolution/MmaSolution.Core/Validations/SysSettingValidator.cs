@@ -1,8 +1,4 @@
-using FluentValidation;
-
-using MmaSolution.Core.Models.Tables;
-
-namespace MmaSolution.Core.Validations
+﻿namespace MmaSolution.Core.Validations
 {
     public class SysSettingValidator : AbstractValidator<SysSettingModifyModel>
     {

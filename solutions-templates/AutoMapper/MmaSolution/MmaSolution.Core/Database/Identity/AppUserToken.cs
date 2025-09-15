@@ -1,10 +1,4 @@
-using Microsoft.AspNetCore.Identity;
-
-using MmaSolution.Core.Models.Identity;
-
-using System;
-
-namespace MmaSolution.Core.Database.Identity;
+﻿namespace MmaSolution.Core.Database.Identity;
 
 public class AppUserToken : IdentityUserToken<Guid>, IAuditEntity
 {
@@ -17,6 +11,8 @@ public class AppUserToken : IdentityUserToken<Guid>, IAuditEntity
     public bool? IsDeleted { get;  set; }
     public Guid? DeletedBy { get;  set; }
     public DateTime? DeletedDate { get;  set; }
+
+    public string Identifier { get; set; }
 
     public AppUserToken()
     {

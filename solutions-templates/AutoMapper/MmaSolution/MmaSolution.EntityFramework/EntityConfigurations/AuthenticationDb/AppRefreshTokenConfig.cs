@@ -1,10 +1,4 @@
-using MmaSolution.Core.Database.Identity;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
-
-namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
 {
     public class AppRefreshTokenConfig : IEntityTypeConfiguration<AppRefreshToken>
     {

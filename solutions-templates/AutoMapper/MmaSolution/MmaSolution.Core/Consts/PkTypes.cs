@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace MmaSolution.Core.Consts;
+﻿namespace MmaSolution.Core.Consts;
 
 public class PkTypes
 {

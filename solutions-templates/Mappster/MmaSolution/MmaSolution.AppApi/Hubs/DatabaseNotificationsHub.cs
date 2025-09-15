@@ -1,13 +1,4 @@
 
-using Microsoft.AspNetCore.SignalR;
-
-using MmaSolution.Core.Enums;
-using MmaSolution.EntityFramework;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
-using System;
-
 namespace MmaSolution.AppApi.Hubs
 {
     public class DatabaseNotificationsHub:Hub

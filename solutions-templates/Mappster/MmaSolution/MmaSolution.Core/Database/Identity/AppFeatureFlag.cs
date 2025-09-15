@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core.Database.Identity;
 
 public class AppFeatureFlag:BaseEntity<Guid>

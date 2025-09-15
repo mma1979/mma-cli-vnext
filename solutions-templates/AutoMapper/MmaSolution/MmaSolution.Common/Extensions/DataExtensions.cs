@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Data;
-using Microsoft.Data.SqlClient;
-using System.Linq;
-
-namespace MmaSolution.Common.Extensions
+﻿namespace MmaSolution.Common.Extensions
 {
     public static class DataExtensions
     {

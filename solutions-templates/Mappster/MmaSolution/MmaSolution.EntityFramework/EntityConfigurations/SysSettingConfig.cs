@@ -1,9 +1,3 @@
-using MmaSolution.Core.Database.Tables;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
-
 namespace MmaSolution.EntityFramework.EntityConfigurations
 {
     public class SysSettingConfig : IEntityTypeConfiguration<SysSetting>
@@ -39,9 +33,10 @@ namespace MmaSolution.EntityFramework.EntityConfigurations
 
 
             builder.Property(e => e.SysKey).HasMaxLength(200);
-            builder.Property(e => e.SysValue).HasMaxLength(2000);
-
             builder.HasIndex(e => e.SysKey);
+
+            builder.Property(e => e.SysValue)
+                .HasConversion<JsonDictionaryConverter>();
 
         }
     }

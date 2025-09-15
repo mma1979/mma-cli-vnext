@@ -1,7 +1,3 @@
-using MmaSolution.Core.Enums;
-
-using System;
-
 namespace MmaSolution.Core.Database.Views
 {
     public class VwAcl

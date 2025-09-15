@@ -1,7 +1,4 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.WebUtilities;
-
-namespace MmaSolution.Common.Extensions
+﻿namespace MmaSolution.Common.Extensions
 {
     public static class NavigationManagerExtensions
     {

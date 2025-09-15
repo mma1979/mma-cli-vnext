@@ -1,11 +1,3 @@
-using MmaSolution.ProxyServices;
-
-using Microsoft.Extensions.Configuration;
-
-using NUnit.Framework;
-
-using System;
-using MmaSolution.Core.Models.Stripe;
 using Stripe;
 
 namespace MmaSolution.Tests

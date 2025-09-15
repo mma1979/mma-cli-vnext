@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.AppApi.Infrastrcture.Attributes;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]

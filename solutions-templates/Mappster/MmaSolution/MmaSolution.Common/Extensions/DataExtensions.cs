@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 
 namespace MmaSolution.Common.Extensions
 {

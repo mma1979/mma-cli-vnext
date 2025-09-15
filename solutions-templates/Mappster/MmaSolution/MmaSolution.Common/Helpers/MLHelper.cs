@@ -1,10 +1,3 @@
-using Microsoft.ML;
-using Microsoft.ML.Data;
-using Microsoft.ML.Transforms.Text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace MmaSolution.Common.Helpers
 {
     public static class MLHelper

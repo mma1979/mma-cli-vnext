@@ -1,38 +1,4 @@
-﻿using Asp.Versioning;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-using MmaSolution.Common.Models;
-using MmaSolution.EntityFramework.Infrastrcture.Interceptors;
-using MmaSolution.EntityFramework;
-
-using Serilog;
-using Serilog.Sinks.MSSqlServer;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.Core.Models;
-using System.Text;
-using System;
-using Redis = StackExchange.Redis;
-using Microsoft.OpenApi.Models;
-using Polly;
-using Polly.Retry;
-using System.Net.Mail;
-using System.Net;
-using MmaSolution.Common.Helpers;
-using MmaSolution.EntityFramework.Infrastrcture;
-using MmaSolution.Services.Account;
-using Hangfire;
-using Hangfire.SqlServer;
-using MmaSolution.AppApi.Infrastrcture.Middlewares;
-using Mapster;
-using MapsterMapper;
-
+﻿
 namespace MmaSolution.AppApi.Infrastrcture.Extensions;
 
 public static class WebApplicationBuilderExtensions
@@ -43,6 +9,17 @@ public static class WebApplicationBuilderExtensions
         builder.Configuration
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName.Trim(' ')}.json", optional: true, reloadOnChange: true)
+            .AddSqlServerJson(source =>
+            {
+                source.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+                source.TableName = "SysSettings";
+                source.KeyColumn = "SysKey";
+                source.JsonColumn = "SysValue";
+                source.EnvironmentColumn = "Environment";
+                source.Environment = builder.Environment.EnvironmentName;
+                source.ReloadOnChange = true;
+                source.ReloadInterval = TimeSpan.FromMinutes(5);
+            })
             .AddEnvironmentVariables();
 
         return builder;

@@ -1,6 +1,4 @@
-using System;
-
-namespace MmaSolution.Core.Database.LogTables
+﻿namespace MmaSolution.Core.Database.LogTables
 {
     public class ElmahError
     {

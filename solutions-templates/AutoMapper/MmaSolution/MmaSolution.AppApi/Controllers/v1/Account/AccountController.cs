@@ -1,21 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-using MmaSolution.Core.Models;
-using MmaSolution.Core.Consts;
-using System;
-using MmaSolution.Services.Account;
-using MmaSolution.AppApi.Infrastrcture.Attributes;
-using MmaSolution.AppApi.Services;
-
-namespace MmaSolution.AppApi.Controllers.v1.Account
+﻿namespace MmaSolution.AppApi.Controllers.v1.Account
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,11 +7,11 @@ namespace MmaSolution.AppApi.Controllers.v1.Account
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly ILogger<AccountController> _logger;
 
-        private readonly Translator _translator;
+        private readonly Services.Translator _translator;
 
         private string Language => Request.Headers.AcceptLanguage.ToString() ?? LanguageCode.Arabic;
 
-        public AccountController(IServiceScopeFactory scopeFactory, ILogger<AccountController> logger, Translator translator)
+        public AccountController(IServiceScopeFactory scopeFactory, ILogger<AccountController> logger, Services.Translator translator)
         {
             _scopeFactory = scopeFactory;
             _logger = logger;
@@ -249,7 +232,7 @@ namespace MmaSolution.AppApi.Controllers.v1.Account
 
             using var scope = _scopeFactory.CreateScope();
             using var service = scope.ServiceProvider.GetRequiredService<AccountService>();
-            var result = await service.ValidateOtp(validateOtpDto.Username, validateOtpDto.Otp);
+            var result = await service.ValidateOtp(validateOtpDto.Identifier, validateOtpDto.Otp);
             if (result.IsSuccess)
                 return Ok(result);
 

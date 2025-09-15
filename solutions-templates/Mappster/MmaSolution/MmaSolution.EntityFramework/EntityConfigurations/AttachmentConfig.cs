@@ -1,9 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using MmaSolution.Core.Database.Tables;
-using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
-
 namespace MmaSolution.EntityFramework.EntityConfigurations
 {
     public class AttachmentConfig : IEntityTypeConfiguration<Attachment>

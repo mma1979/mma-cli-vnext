@@ -1,9 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using MmaSolution.Core.Database.Notifications;
-using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
-
 namespace MmaSolution.EntityFramework.EntityConfigurations
 {
     public class NotificationConfig : IEntityTypeConfiguration<Notification>

@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core.Database.Localization
 {
     public class Resource

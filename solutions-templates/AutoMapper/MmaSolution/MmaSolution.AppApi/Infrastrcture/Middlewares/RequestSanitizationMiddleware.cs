@@ -1,10 +1,4 @@
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-
-namespace MmaSolution.AppApi.Infrastrcture.Middlewares
+﻿namespace MmaSolution.AppApi.Infrastrcture.Middlewares
 {
     public class RequestSanitizationMiddleware : IMiddleware
     {

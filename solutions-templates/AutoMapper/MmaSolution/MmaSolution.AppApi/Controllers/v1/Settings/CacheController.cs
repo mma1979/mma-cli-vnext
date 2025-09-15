@@ -1,13 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-using MmaSolution.Services.Chache;
-
-using System;
-
-namespace MmaSolution.AppApi.Controllers.v1.Settings
+﻿namespace MmaSolution.AppApi.Controllers.v1.Settings
 {
     [Route("api/[controller]")]
     [ApiController]

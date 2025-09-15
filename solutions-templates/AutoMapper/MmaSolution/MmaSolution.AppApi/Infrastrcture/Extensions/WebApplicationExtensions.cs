@@ -1,19 +1,4 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-
-using MmaSolution.Common.Extensions;
-using System.Linq;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Hangfire.Dashboard.BasicAuthorization;
-using Hangfire;
-using Microsoft.Extensions.Configuration;
-using AspNetCore.Scalar;
-
-namespace MmaSolution.AppApi.Infrastrcture.Extensions;
+﻿namespace MmaSolution.AppApi.Infrastrcture.Extensions;
 
 public static class WebApplicationExtensions
 {

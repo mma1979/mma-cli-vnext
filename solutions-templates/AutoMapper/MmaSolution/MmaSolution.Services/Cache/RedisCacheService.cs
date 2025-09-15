@@ -1,16 +1,4 @@
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
-using Newtonsoft.Json;
-
-using System;
-using System.Text;
-
-using Redis = StackExchange.Redis;
-
-namespace MmaSolution.Services.Chache
+﻿namespace MmaSolution.Services.Chache
 {
     public class RedisCacheService : ICacheService
     {

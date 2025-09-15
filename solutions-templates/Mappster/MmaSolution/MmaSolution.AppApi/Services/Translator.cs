@@ -1,11 +1,3 @@
-using Microsoft.AspNetCore.Html;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System;
-using MmaSolution.Services.Settings;
-using MmaSolution.Core.Consts;
-
 namespace MmaSolution.AppApi.Services;
 
 public class Translator

@@ -1,6 +1,4 @@
-using System;
-
-namespace MmaSolution.Core.Models.LogTables
+﻿namespace MmaSolution.Core.Models.LogTables
 {
     public partial class AppLogReadModel
     {

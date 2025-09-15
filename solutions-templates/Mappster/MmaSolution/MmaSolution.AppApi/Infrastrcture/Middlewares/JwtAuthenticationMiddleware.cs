@@ -1,22 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Tokens;
-
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-using MmaSolution.Common.Helpers;
-using MmaSolution.Core.Consts;
-using MmaSolution.Core.Models.Identity;
-using Serilog;
-using Microsoft.Data.SqlClient;
-using Dapper;
-using MmaSolution.Common.Extensions;
-using Microsoft.Extensions.Configuration;
-
 namespace MmaSolution.AppApi.Infrastrcture.Middlewares;
 
 public class JwtAuthenticationMiddleware

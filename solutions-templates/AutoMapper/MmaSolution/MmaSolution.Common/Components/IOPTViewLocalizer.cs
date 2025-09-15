@@ -1,15 +1,4 @@
-using MmaSolution.Common.Extensions;
-using MmaSolution.Common.Helpers;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Localization;
-using Microsoft.Extensions.Localization;
-
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-
-namespace MmaSolution.Common.Components
+﻿namespace MmaSolution.Common.Components
 {
     public class IOPTViewLocalizer : IViewLocalizer
     {

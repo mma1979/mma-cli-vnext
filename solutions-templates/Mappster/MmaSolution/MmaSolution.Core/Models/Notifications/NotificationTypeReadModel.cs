@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core.Models.Notifications
 {
     public partial class NotificationTypeReadModel

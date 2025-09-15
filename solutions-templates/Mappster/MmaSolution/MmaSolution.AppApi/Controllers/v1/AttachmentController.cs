@@ -1,15 +1,3 @@
-using MmaSolution.Core.Models;
-using MmaSolution.Services;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.Hosting;
-
-using System.IO;
-using System.Threading.Tasks;
-using MmaSolution.AppApi.Infrastrcture.Attributes;
-
 namespace MmaSolution.AppApi.Controllers.v1
 {
     [Route("api/[controller]")]

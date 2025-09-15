@@ -1,5 +1,3 @@
-using System.Text.RegularExpressions;
-
 namespace MmaSolution.Common.Helpers;
 
 public static class WildcardHelper

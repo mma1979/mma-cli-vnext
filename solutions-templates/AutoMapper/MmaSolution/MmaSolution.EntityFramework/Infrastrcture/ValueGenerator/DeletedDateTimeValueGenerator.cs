@@ -1,10 +1,4 @@
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using Microsoft.EntityFrameworkCore;
-
-using System;
-
-namespace MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
+﻿namespace MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
 public class DeletedDateTimeValueGenerator : ValueGenerator<DateTime?>
 {
     public override DateTime? Next(EntityEntry entry)

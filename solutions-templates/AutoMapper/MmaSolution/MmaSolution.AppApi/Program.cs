@@ -1,14 +1,4 @@
-using Serilog;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Builder;
-using MmaSolution.AppApi.Infrastrcture.Middlewares;
-using MmaSolution.AppApi.Infrastrcture.Extensions;
-using MmaSolution.Services;
-
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 builder.ConfigureAppConfiguration()
     .ConfigureSeriLog()

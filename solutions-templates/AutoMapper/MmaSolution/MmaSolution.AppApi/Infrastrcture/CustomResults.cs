@@ -1,10 +1,4 @@
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System;
-using MmaSolution.Common;
-using MmaSolution.Common.Infrastructure;
-
-namespace MmaSolution.AppApi.Infrastrcture;
+﻿namespace MmaSolution.AppApi.Infrastrcture;
 
 public class CustomResults
 {

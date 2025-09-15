@@ -1,13 +1,4 @@
-using FluentEmail.Core;
-using FluentEmail.Core.Models;
-
-using System;
-using System.Threading.Tasks;
-using Polly;
-using System.Net.Sockets;
-using System.Net.Mail;
-
-namespace MmaSolution.Services
+﻿namespace MmaSolution.Services
 {
     public class EmailService : IDisposable
     {

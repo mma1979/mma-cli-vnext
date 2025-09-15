@@ -1,9 +1,4 @@
-using MmaSolution.Core.Enums;
-
-using System;
-using System.Collections.Generic;
-
-namespace MmaSolution.Core.Database.Identity;
+﻿namespace MmaSolution.Core.Database.Identity;
 
 public class AppFeature: BaseEntity<Guid>
 {

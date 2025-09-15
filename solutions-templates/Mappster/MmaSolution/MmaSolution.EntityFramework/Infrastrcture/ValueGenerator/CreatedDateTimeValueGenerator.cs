@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using System;
-
 namespace MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
 
 public class CreatedDateTimeValueGenerator : ValueGenerator<DateTime>

@@ -1,17 +1,4 @@
-using MmaSolution.Core.Models;
-
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
-using Stripe;
-
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using MmaSolution.Core.Models.Stripe;
-
-namespace MmaSolution.ProxyServices
+﻿namespace MmaSolution.ProxyServices
 {
     public class StripePaymentService
     {

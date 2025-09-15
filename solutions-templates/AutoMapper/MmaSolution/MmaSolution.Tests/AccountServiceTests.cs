@@ -1,7 +1,4 @@
-using NUnit.Framework;
-using MmaSolution.Services.Account;
-
-namespace MmaSolution.Tests
+﻿namespace MmaSolution.Tests
 {
     public class AccountServiceTests
     {

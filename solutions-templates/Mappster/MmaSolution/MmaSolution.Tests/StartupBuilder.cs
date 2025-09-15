@@ -1,18 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-using MmaSolution.AppApi.Controllers.v1.Account;
-using MmaSolution.Common.Models;
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.EntityFramework;
-using MmaSolution.Services;
-using MmaSolution.Services.Account;
-using System;
-using System.Net;
-using System.Net.Mail;
-
 namespace MmaSolution.Tests
 {
     public class StartupBuilder

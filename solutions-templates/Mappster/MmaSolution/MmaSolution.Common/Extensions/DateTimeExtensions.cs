@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Common.Extensions
 {
     public static class DateTimeExtensions

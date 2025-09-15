@@ -1,16 +1,3 @@
-using FluentValidation.Results;
-
-using MmaSolution.Common;
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.Core.Enums;
-using MmaSolution.Core.Models.Notifications;
-using MmaSolution.Core.Validations;
-
-using Newtonsoft.Json;
-
-using System;
-using System.Linq;
-
 namespace MmaSolution.Core.Database.Notifications
 {
     public class Notification : BaseEntity<Guid>

@@ -1,7 +1,4 @@
-using System;
-using System.Net;
-
-namespace MmaSolution.Common
+﻿namespace MmaSolution.Common
 {
     public class BusinessException : Exception
     {

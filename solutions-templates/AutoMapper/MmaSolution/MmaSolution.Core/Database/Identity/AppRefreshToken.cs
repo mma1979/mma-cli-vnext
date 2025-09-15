@@ -1,8 +1,4 @@
-using MmaSolution.Core.Models.Identity;
-
-using System;
-
-namespace MmaSolution.Core.Database.Identity
+﻿namespace MmaSolution.Core.Database.Identity
 {
     public partial class AppRefreshToken : BaseEntity<Guid>
     {

@@ -1,22 +1,3 @@
-using MapsterMapper;
-using Mapster;
-using MmaSolution.Core.Models;
-using MmaSolution.EntityFramework;
-using MmaSolution.Services.Chache;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using MmaSolution.Core.Database.Notifications;
-using MmaSolution.Core.Models.Notifications;
-using MmaSolution.Core.Consts;
-
 namespace MmaSolution.Services
 {
 

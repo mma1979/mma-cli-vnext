@@ -1,9 +1,4 @@
-using Microsoft.AspNetCore.Http;
-
-using System;
-using System.Security.Claims;
-
-namespace MmaSolution.EntityFramework.Infrastrcture;
+﻿namespace MmaSolution.EntityFramework.Infrastrcture;
 
 
 public class CurrentUserService

@@ -1,8 +1,3 @@
-using MmaSolution.Core.Enums;
-using MmaSolution.Core.Models.Identity;
-
-using System;
-
 namespace MmaSolution.Core.Models.Notifications
 {
     public partial class NotificationModifyModel

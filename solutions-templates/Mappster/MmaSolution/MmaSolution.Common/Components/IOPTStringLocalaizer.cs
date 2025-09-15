@@ -1,11 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Localization;
-using MmaSolution.Common.Extensions;
-using MmaSolution.Common.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-
 namespace MmaSolution.Common.Components
 {
     public class IOPTStringLocalaizer : IStringLocalizer

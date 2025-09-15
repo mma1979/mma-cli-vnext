@@ -1,19 +1,4 @@
-using AutoMapper;
-
-using MmaSolution.Core.Database.Tables;
-using MmaSolution.Core.Models;
-using MmaSolution.EntityFramework;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MmaSolution.Services
+﻿namespace MmaSolution.Services
 {
     public class AttachmentsService
     {

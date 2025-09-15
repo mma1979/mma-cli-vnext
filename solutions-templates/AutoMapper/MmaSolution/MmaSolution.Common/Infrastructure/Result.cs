@@ -1,8 +1,4 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-
-
-namespace MmaSolution.Common.Infrastructure;
+﻿namespace MmaSolution.Common.Infrastructure;
 
 public class Result
 {

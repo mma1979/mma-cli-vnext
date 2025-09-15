@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
-using System.Linq;
-using System.Reflection;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MmaSolution.Common.Extensions
 {

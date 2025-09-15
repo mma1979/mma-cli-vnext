@@ -1,17 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-using MmaSolution.Core.Consts;
-using MmaSolution.EntityFramework;
-using MmaSolution.Services.Chache;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MmaSolution.Services.Settings
+﻿namespace MmaSolution.Services.Settings
 {
     public class LocalizationSerivce
     {

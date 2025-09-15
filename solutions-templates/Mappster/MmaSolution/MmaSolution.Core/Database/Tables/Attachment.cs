@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core.Database.Tables
 {
     public class Attachment : BaseEntity<Guid>

@@ -1,8 +1,4 @@
-using Microsoft.AspNetCore.Identity;
-
-using System;
-
-namespace MmaSolution.Core.Database.Identity
+﻿namespace MmaSolution.Core.Database.Identity
 {
     public class AppUserRole : IdentityUserRole<Guid>, IAuditEntity
     {

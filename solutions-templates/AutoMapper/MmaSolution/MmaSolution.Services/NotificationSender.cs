@@ -1,13 +1,4 @@
-using MmaSolution.Core.Database.Notifications;
-using MmaSolution.Core.Models;
-using MmaSolution.EntityFramework;
-
-using Serilog;
-
-using System;
-using System.Threading.Tasks;
-
-namespace MmaSolution.Services
+﻿namespace MmaSolution.Services
 {
     public class NotificationSender
     {

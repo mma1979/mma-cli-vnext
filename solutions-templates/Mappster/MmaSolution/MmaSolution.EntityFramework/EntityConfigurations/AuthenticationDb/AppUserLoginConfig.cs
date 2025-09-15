@@ -1,8 +1,3 @@
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using MmaSolution.Core.Database.Identity;
-using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
-
 namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb;
 
 public class AppUserLoginConfig : IEntityTypeConfiguration<AppUserLogin>

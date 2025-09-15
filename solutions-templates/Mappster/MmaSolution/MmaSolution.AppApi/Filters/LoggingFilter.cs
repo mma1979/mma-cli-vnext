@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Mvc.Filters;
-using Serilog;
-
-using System;
-using System.Linq;
-
 namespace MmaSolution.AppApi.Filters
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = true)]

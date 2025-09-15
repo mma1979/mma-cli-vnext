@@ -1,11 +1,3 @@
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
-using System.Threading;
-using System;
-
 namespace MmaSolution.AppApi.Infrastrcture;
 
 internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)

@@ -1,8 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using MmaSolution.Core.Database.LogTables;
-
 namespace MmaSolution.EntityFramework.EntityConfigurations
 {
     public class ElmahErrorConfig : IEntityTypeConfiguration<ElmahError>

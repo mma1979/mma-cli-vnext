@@ -1,7 +1,3 @@
-using MmaSolution.Common.Extensions;
-
-using System;
-
 namespace MmaSolution.Core.Models
 {
     public class QueryViewModel

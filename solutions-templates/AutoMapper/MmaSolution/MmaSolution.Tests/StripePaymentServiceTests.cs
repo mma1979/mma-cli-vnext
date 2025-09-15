@@ -1,14 +1,4 @@
-using MmaSolution.ProxyServices;
-
-using Microsoft.Extensions.Configuration;
-
-using NUnit.Framework;
-
-using System;
-using MmaSolution.Core.Models.Stripe;
-using Stripe;
-
-namespace MmaSolution.Tests
+﻿namespace MmaSolution.Tests
 {
     public class StripePaymentServiceTests
     {
@@ -35,7 +25,7 @@ namespace MmaSolution.Tests
         {
 
             service = new StripePaymentService(config);
-            StripeConfiguration.ApiKey = service.SecretKey;
+            Stripe.StripeConfiguration.ApiKey = service.SecretKey;
         }
 
         [Test]

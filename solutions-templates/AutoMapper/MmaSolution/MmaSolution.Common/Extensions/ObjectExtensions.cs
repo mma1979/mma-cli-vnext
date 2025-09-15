@@ -1,8 +1,4 @@
-using System;
-using System.Linq;
-using System.Web;
-
-namespace MmaSolution.Common.Extensions
+﻿namespace MmaSolution.Common.Extensions
 {
     public static class ObjectExtensions
     {

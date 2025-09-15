@@ -1,8 +1,4 @@
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using System;
-
-namespace MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
+﻿namespace MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
 public class GuidV7ValueGenerator : ValueGenerator<Guid>
 {
     public override Guid Next(EntityEntry entry)

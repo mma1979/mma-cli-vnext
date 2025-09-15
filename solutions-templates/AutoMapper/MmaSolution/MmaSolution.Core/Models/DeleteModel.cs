@@ -1,6 +1,4 @@
-using System;
-
-namespace MmaSolution.Core.Models
+﻿namespace MmaSolution.Core.Models
 {
     public class DeleteModel
     {

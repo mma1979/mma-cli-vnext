@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace MmaSolution.Core.Database.Localization
+﻿namespace MmaSolution.Core.Database.Localization
 {
     public class Language
     {

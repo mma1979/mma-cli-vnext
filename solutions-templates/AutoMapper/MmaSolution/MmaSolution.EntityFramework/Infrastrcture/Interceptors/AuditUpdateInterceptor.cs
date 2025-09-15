@@ -1,14 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-
-using MmaSolution.Core;
-
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MmaSolution.EntityFramework.Infrastrcture.Interceptors;
+﻿namespace MmaSolution.EntityFramework.Infrastrcture.Interceptors;
 
 public class AuditUpdateInterceptor : SaveChangesInterceptor, IInterceptor
 {

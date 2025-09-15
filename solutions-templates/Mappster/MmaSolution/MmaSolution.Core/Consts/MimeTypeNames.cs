@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core.Consts
 {
     /* Copied from:

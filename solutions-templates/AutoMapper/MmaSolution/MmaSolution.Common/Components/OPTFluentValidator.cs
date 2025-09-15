@@ -1,10 +1,4 @@
-using FluentValidation;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using MmaSolution.Common.Helpers;
-using System;
-
-namespace MmaSolution.Common.Components
+﻿namespace MmaSolution.Common.Components
 {
     public class OPTFluentValidator<TValidator> : ComponentBase where TValidator : IValidator, new()
     {

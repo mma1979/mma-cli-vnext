@@ -1,6 +1,3 @@
-using System;
-using System.Net;
-
 namespace MmaSolution.Common
 {
     public class BusinessException : Exception

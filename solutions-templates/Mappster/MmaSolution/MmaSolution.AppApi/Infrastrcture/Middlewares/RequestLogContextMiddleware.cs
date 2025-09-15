@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using MmaSolution.AppApi.Infrastrcture.Extensions;
-using Serilog.Context;
-
-using System.Threading.Tasks;
-
 namespace MmaSolution.AppApi.Infrastrcture.Middlewares
 {
     public class RequestLogContextMiddleware

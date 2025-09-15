@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
-using System.Linq;
-using System.Reflection;
-
 namespace MmaSolution.Common.Extensions
 {
     public static class IEnumerableExtensions

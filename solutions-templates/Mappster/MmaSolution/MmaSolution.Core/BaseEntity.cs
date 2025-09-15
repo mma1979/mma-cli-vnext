@@ -1,5 +1,3 @@
-using System;
-
 namespace MmaSolution.Core
 {
     public class BaseEntity<T> : IAuditEntity

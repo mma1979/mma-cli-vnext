@@ -1,15 +1,4 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
-
-using MmaSolution.ProxyServices;
-using MmaSolution.Services.Account;
-using MmaSolution.Services.Chache;
-
-using MmaSolution.Services.Settings;
-
-
-namespace MmaSolution.Services
+﻿namespace MmaSolution.Services
 {
     public static class ServicesDI
     {
@@ -22,7 +11,6 @@ namespace MmaSolution.Services
             builder.Services.AddSingleton<Common.Infrastructure.PasswordHasher>();
 
             builder.Services.AddTransient<LocalizationSerivce>();
-            builder.Services.AddTransient<SysSettingsService>();
             builder.Services.AddTransient<AccountService>();
             builder.Services.AddTransient<FeatureService>();
             builder.Services.AddTransient<PermissionService>();

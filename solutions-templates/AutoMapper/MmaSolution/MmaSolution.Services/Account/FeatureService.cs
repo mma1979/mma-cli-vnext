@@ -1,11 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using MmaSolution.Core.Enums;
-using MmaSolution.EntityFramework;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MmaSolution.Services.Account;
+﻿namespace MmaSolution.Services.Account;
 
 public class FeatureService
 {

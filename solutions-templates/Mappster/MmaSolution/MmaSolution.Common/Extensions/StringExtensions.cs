@@ -1,11 +1,3 @@
-using MmaSolution.Common.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-
 namespace MmaSolution.Common.Extensions
 {
     public static class StringExtensions

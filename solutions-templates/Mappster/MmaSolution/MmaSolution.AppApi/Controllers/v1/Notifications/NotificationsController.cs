@@ -1,21 +1,3 @@
-using MmaSolution.Common;
-using MmaSolution.AppApi.Services;
-using MmaSolution.Core.Models;
-using MmaSolution.Services;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MmaSolution.Core.Models.Notifications;
-using System.Security.Claims;
-using MmaSolution.AppApi.Infrastrcture.Attributes;
-using MmaSolution.Core.Consts;
-
 namespace MmaSolution.AppApi.Controllers.v1.Notifications
 {
     [Route("api/[controller]")]
@@ -23,10 +5,10 @@ namespace MmaSolution.AppApi.Controllers.v1.Notifications
     public class NotificationsController : BaseController
     {
         private readonly NotificationService _notificationService;
-        private readonly Translator _translator;
+        private readonly Services.Translator _translator;
         private readonly ILogger<NotificationsController> _logger;
 
-        public NotificationsController(NotificationService notificationService, Translator translator, ILogger<NotificationsController> logger) : base(translator)
+        public NotificationsController(NotificationService notificationService, Services.Translator translator, ILogger<NotificationsController> logger) : base(translator)
         {
             _notificationService = notificationService;
             _translator = translator;

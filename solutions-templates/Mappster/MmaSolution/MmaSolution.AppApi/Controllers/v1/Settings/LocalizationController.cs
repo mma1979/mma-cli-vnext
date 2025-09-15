@@ -1,16 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-using MmaSolution.Core.Consts;
-using MmaSolution.Services.Settings;
-
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-
 namespace MmaSolution.AppApi.Controllers.v1.Settings
 {
     [Route("api/[controller]")]

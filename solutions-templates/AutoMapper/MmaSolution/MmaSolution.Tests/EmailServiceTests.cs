@@ -1,11 +1,4 @@
-using MmaSolution.Services;
-
-using NUnit.Framework;
-
-using System;
-using System.Threading.Tasks;
-
-namespace MmaSolution.Tests
+﻿namespace MmaSolution.Tests
 {
     public class EmailServiceTests
     {

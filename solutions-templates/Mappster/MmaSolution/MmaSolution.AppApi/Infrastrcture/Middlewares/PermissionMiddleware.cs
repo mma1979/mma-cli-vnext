@@ -1,17 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Controllers;
-
-using MmaSolution.Common.Extensions;
-using MmaSolution.Core.Database.Identity;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authorization;
-using MmaSolution.Services.Account;
-using MmaSolution.AppApi.Infrastrcture.Attributes;
-
 namespace MmaSolution.AppApi.Infrastrcture.Middlewares;
 
 public class PermissionMiddleware

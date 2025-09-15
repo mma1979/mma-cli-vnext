@@ -1,6 +1,3 @@
-
-using System;
-
 namespace MmaSolution.Services.Chache
 {
     public interface ICacheService
