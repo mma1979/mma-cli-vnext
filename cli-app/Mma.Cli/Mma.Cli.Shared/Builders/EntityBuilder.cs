@@ -238,12 +238,12 @@ public class EntityConfig
 
 public class TemplateSet
 {
-    public string ModifyModel { get; set; }
-    public string ReadModel { get; set; }
-    public string Entity { get; set; }
-    public string EntityConfig { get; set; }
-    public string Service { get; set; }
-    public string Controller { get; set; }
+    public string ModifyModel { get; set; } = "";
+    public string ReadModel { get; set; } = "";
+    public string Entity { get; set; } = "";
+    public string EntityConfig { get; set; } = "";
+    public string Service { get; set; } = "";
+    public string Controller { get; set; } = "";
 }
 
 public interface IFileWriter
@@ -261,7 +261,7 @@ public class FileWriter : IFileWriter
 
         var directory = Path.GetDirectoryName(path);
         if (!Directory.Exists(directory))
-            Directory.CreateDirectory(directory);
+            Directory.CreateDirectory(directory!);
 
         File.WriteAllText(path, content);
     }
