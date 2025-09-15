@@ -32,7 +32,7 @@ namespace MmaSolution.Tests
 
             // Service DI
             services.AddTransient<AccountService>();
-            services.AddTransient<EmailService>();
+            services.AddTransient<IEmailService>();
 
             services
                   .AddFluentEmail(Configuration.GetValue<string>("SMTP:Email"))

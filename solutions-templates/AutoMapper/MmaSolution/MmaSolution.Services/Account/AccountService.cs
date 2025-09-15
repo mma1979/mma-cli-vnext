@@ -1,4 +1,6 @@
-﻿namespace MmaSolution.Services.Account
+﻿
+
+namespace MmaSolution.Services.Account
 {
     public class AccountService : IDisposable
     {
@@ -90,7 +92,7 @@
             _ = await context.SaveChangesAsync();
 
             //send email
-            var emailService = scope.ServiceProvider.GetRequiredService<EmailService>();
+            var emailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
             _ = emailService.Send(user.Email, TokenTypes.EMAIL_CONFIRMATION, $"Your pin code is: {pin}");
 
             return ResultViewModel<RegistrationResponse>.Success(new()
@@ -564,7 +566,7 @@
             _ = await context.SaveChangesAsync();
 
             //send email
-            var emailService = scope.ServiceProvider.GetRequiredService<EmailService>();
+            var emailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
             _ = emailService.Send(user.Email, TokenTypes.FORGET_PASSWORD_TOKEN, $"Your pin code is: {pin}");
 
 

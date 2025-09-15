@@ -19,4 +19,5 @@ global using System.Net;
 global using System.Net.Mail;
 global using MmaSolution.ProxyServices;
 global using MmaSolution.Core.Models.Stripe;
+global using MmaSolution.Services.EmailService;
 

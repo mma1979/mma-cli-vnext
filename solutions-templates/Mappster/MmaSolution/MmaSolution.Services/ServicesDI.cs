@@ -1,3 +1,6 @@
+using MmaSolution.Services.EmailService;
+using MmaSolution.Services.SmsService;
+
 namespace MmaSolution.Services;
 
 public static class ServicesDI
@@ -15,7 +18,8 @@ public static class ServicesDI
         builder.Services.AddTransient<FeatureService>();
         builder.Services.AddTransient<PermissionService>();
        
-        builder.Services.AddTransient<EmailService>();
+        builder.Services.AddTransient<IEmailService, ResendService>();
+        builder.Services.AddTransient<ISmsService, WhatsAppService>();
         builder.Services.AddTransient<RoleService>();
         builder.Services.AddTransient<AttachmentsService>();
         

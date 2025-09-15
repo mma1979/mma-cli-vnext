@@ -1,8 +1,9 @@
-﻿namespace MmaSolution.Tests
+﻿
+namespace MmaSolution.Tests
 {
     public class EmailServiceTests
     {
-        private EmailService service;
+        private IEmailService service;
         StartupBuilder startupBuilder;
 
         [OneTimeSetUp]
@@ -17,7 +18,7 @@
         public void Setup()
         {
 
-            service = startupBuilder.GetInstance<EmailService>();
+            service = startupBuilder.GetInstance<IEmailService>();
         }
 
         [Test]
@@ -25,7 +26,7 @@
         {
             var response = await service.Send("mamado2000@gmail.com", "account confirmation", $"your code is: {Random.Shared.Next(0000, 9999)}");
 
-            Assert.Equals(response.Successful, true);
+            Assert.Equals(response, true);
         }
     }
 }

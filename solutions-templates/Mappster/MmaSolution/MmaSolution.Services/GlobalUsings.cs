@@ -51,3 +51,4 @@ global using Mapster;
 global using FluentEmail.Core;
 global using FluentEmail.Core.Models;
 global using Dapper;
+global using MmaSolution.Services.EmailService;

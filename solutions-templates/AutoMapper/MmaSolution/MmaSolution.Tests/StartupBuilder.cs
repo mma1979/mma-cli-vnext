@@ -1,4 +1,6 @@
-﻿namespace MmaSolution.Tests
+﻿
+
+namespace MmaSolution.Tests
 {
     public class StartupBuilder
     {
@@ -32,7 +34,7 @@
 
             // Service DI
             services.AddTransient<AccountService>();
-            services.AddTransient<EmailService>();
+            services.AddTransient<IEmailService,ResendService>();
 
             services
                   .AddFluentEmail(Configuration.GetValue<string>("SMTP:Email"))
