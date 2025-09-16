@@ -1,4 +1,4 @@
-namespace MmaSolution.Common.Infrastructure;
+﻿namespace MmaSolution.Common.Infrastructure;
 
 public sealed class PasswordHasher 
 {

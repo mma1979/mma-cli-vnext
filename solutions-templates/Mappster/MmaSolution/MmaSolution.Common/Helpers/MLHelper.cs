@@ -1,4 +1,4 @@
-namespace MmaSolution.Common.Helpers
+﻿namespace MmaSolution.Common.Helpers
 {
     public static class MLHelper
     {

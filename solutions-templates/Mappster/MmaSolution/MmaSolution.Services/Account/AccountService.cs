@@ -1,4 +1,4 @@
-
+﻿
 
 namespace MmaSolution.Services.Account
 {
@@ -383,7 +383,7 @@ namespace MmaSolution.Services.Account
 
             var userRoles = await userManager.GetRolesAsync(user).ConfigureAwait(false);
 
-
+            
 
             var token = JweTokenGenerator.GenerateJweToken(_tokenValidationParameters, user, userRoles);
 

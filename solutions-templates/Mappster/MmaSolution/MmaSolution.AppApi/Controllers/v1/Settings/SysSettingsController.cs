@@ -1,6 +1,4 @@
-
-
-namespace MmaSolution.AppApi.Controllers.v1.Settings;
+﻿namespace MmaSolution.AppApi.Controllers.v1.Settings;
 
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiVersion(1.0)]
@@ -22,7 +20,7 @@ public class SysSettingsController : ControllerBase
     {
         try
         {
-           
+
             var res = _configuration.GetValue<Dictionary<string, object>>(key);
             return Ok(res);
         }

@@ -14,5 +14,8 @@
         public bool? IsDeleted { get; set; }
         public Guid? DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
+
+        public bool ProbgateForAllUsers { get; set; } = true;
+        public string ProbgatePermissionPattern { get; set; } = "Read";
     }
 }

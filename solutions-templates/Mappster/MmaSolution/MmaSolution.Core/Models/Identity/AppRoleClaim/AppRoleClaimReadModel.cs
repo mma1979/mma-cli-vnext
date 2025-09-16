@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppRoleClaim
+﻿namespace MmaSolution.Core.Models.Identity.AppRoleClaim
 {
     public partial class AppRoleClaimReadModel
     {

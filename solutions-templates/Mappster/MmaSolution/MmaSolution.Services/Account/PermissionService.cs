@@ -1,4 +1,4 @@
-namespace MmaSolution.Services.Account;
+﻿namespace MmaSolution.Services.Account;
 
 public class PermissionService
 {

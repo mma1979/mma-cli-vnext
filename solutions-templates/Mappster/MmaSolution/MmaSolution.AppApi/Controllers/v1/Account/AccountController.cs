@@ -1,4 +1,4 @@
-namespace MmaSolution.AppApi.Controllers.v1.Account
+﻿namespace MmaSolution.AppApi.Controllers.v1.Account
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion(1.0)]

@@ -1,4 +1,4 @@
-namespace MmaSolution.Common.Helpers
+﻿namespace MmaSolution.Common.Helpers
 {
     public class Translator
     {
@@ -40,7 +40,7 @@ namespace MmaSolution.Common.Helpers
             return config;
         }
 
-        public string Translate(string key, string? lang = null)
+        public string Translate(string key, string lang = null)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace MmaSolution.Common.Helpers
             }
         }
 
-        public string[] Translate(string[] keys, string? lang = null)
+        public string[] Translate(string[] keys, string lang = null)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace MmaSolution.Common.Helpers
             }
         }
 
-        public async Task<string[]> TranslateAsync(string[] keys, string? lang = null)
+        public async Task<string[]> TranslateAsync(string[] keys, string lang = null)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace MmaSolution.Common.Helpers
             }
         }
 
-        public Dictionary<string, string> TranslateDict(string[] keys, string? lang = null)
+        public Dictionary<string, string> TranslateDict(string[] keys, string lang = null)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace MmaSolution.Common.Helpers
             }
         }
 
-        public async Task<Dictionary<string, string>> TranslateDictAsync(string[] keys, string? lang = null)
+        public async Task<Dictionary<string, string>> TranslateDictAsync(string[] keys, string lang = null)
         {
             try
             {
@@ -150,7 +150,7 @@ namespace MmaSolution.Common.Helpers
                 return keys.ToDictionary(e => e, e => e);
             }
         }
-        public HtmlString TranslateHtml(string key, string? lang = null)
+        public HtmlString TranslateHtml(string key, string lang = null)
         {
             try
             {
@@ -166,7 +166,7 @@ namespace MmaSolution.Common.Helpers
             }
         }
 
-        public async Task<HtmlString> TranslateHtmlAsync(string key, string? lang = null)
+        public async Task<HtmlString> TranslateHtmlAsync(string key, string lang = null)
         {
             try
             {
@@ -185,7 +185,7 @@ namespace MmaSolution.Common.Helpers
 
     public static class TranslatorExtensions
     {
-        public static IServiceCollection AddTranslator(this IServiceCollection serviceCollection, Action<Translator>? optionsAction = null, ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
+        public static IServiceCollection AddTranslator(this IServiceCollection serviceCollection, Action<Translator> optionsAction = null, ServiceLifetime contextLifetime = ServiceLifetime.Scoped, ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
         {
             var httpContext = serviceCollection.BuildServiceProvider().GetRequiredService<IHttpContextAccessor>().HttpContext;
             var lang = httpContext?.Request.Cookies[CookiesNames.Language] ?? "en";

@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppAccessControlEntry
+﻿namespace MmaSolution.Core.Models.Identity.AppAccessControlEntry
 {
     public partial class AppAccessControlEntryModifyModel
     {

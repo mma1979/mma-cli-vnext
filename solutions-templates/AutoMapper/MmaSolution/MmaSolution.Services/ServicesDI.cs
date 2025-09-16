@@ -1,4 +1,5 @@
-﻿using MmaSolution.Services.SmsService;
+﻿using MmaSolution.Services.Files;
+using MmaSolution.Services.SmsService;
 
 namespace MmaSolution.Services
 {
@@ -22,6 +23,9 @@ namespace MmaSolution.Services
             builder.Services.AddTransient<ISmsService,WhatsAppService>();
             builder.Services.AddTransient<RoleService>();
             builder.Services.AddTransient<AttachmentsService>();
+            builder.Services.AddTransient<AccessControlService>();
+            builder.Services.AddTransient<UserProfileService>();
+            builder.Services.AddTransient<MinioService>();
             
 
             return builder;

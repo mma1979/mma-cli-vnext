@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppUserLogin
+﻿namespace MmaSolution.Core.Models.Identity.AppUserLogin
 {
     public partial class AppUserLoginModifyModel
     {

@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppResource
+﻿namespace MmaSolution.Core.Models.Identity.AppResource
 {
     public partial class AppResourceModifyModel
     {
@@ -14,5 +14,8 @@ namespace MmaSolution.Core.Models.Identity.AppResource
         public bool? IsDeleted { get; set; }
         public Guid? DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
+
+        public bool ProbgateForAllUsers { get; set; } = true;
+        public string ProbgatePermissionPattern { get; set; } = "Read";
     }
 }

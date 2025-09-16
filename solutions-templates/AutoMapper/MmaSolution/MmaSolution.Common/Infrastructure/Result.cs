@@ -32,9 +32,9 @@ public class Result
 
 public class Result<TValue> : Result
 {
-    private readonly TValue? _value;
+    private readonly TValue _value;
 
-    public Result(TValue? value, bool isSuccess, Error error)
+    public Result(TValue value, bool isSuccess, Error error)
         : base(isSuccess, error)
     {
         _value = value;
@@ -45,7 +45,7 @@ public class Result<TValue> : Result
         ? _value!
         : throw new InvalidOperationException("The value of a failure result can't be accessed.");
 
-    public static implicit operator Result<TValue>(TValue? value) =>
+    public static implicit operator Result<TValue>(TValue value) =>
         value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
 
     public static Result<TValue> ValidationFailure(Error error) =>

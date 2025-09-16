@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppUserToken
+﻿namespace MmaSolution.Core.Models.Identity.AppUserToken
 {
     public partial class AppUserTokenModifyModel
     {

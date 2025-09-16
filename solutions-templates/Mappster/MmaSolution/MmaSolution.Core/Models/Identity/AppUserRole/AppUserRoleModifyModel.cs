@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppUserRole
+﻿namespace MmaSolution.Core.Models.Identity.AppUserRole
 {
     public partial class AppUserRoleModifyModel
     {

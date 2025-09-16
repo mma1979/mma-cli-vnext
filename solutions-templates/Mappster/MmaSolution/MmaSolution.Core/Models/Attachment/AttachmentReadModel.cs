@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Attachment
+﻿namespace MmaSolution.Core.Models.Attachment
 {
     public partial class AttachmentReadModel
     {

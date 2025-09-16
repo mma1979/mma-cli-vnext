@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppFeatureFlag
+﻿namespace MmaSolution.Core.Models.Identity.AppFeatureFlag
 {
     public partial class AppFeatureFlagModifyModel
     {

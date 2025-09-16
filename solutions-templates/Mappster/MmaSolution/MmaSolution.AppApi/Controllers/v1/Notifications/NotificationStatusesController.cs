@@ -1,4 +1,4 @@
-namespace MmaSolution.AppApi.Controllers.v1.Notifications
+﻿namespace MmaSolution.AppApi.Controllers.v1.Notifications
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion(1.0)]

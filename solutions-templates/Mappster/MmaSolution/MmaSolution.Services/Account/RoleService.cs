@@ -1,4 +1,4 @@
-namespace MmaSolution.Services.Account;
+﻿namespace MmaSolution.Services.Account;
 
 public class RoleService
 {
@@ -55,7 +55,7 @@ public class RoleService
                 PageSize = query.PageSize,
                 PageNumber = query.PageNumber,
                 Filter = query.Filter,
-                Data = list.Adapt<List<AppRoleReadModel>>()
+                Data = _mapper.Map<List<AppRoleReadModel>>(list)
             };
 
             _cacheService.Set(cacheKey, result);
@@ -96,7 +96,7 @@ public class RoleService
                 IsSuccess = true,
                 StatusCode = 200,
                 Messages = { ResourcesKeys.DATA_LOAD_SUCCESS },
-                Data = data.Adapt<AppRoleModifyModel>()
+                Data = _mapper.Map<AppRoleModifyModel>(data)
             };
 
             _cacheService.Set(cacheKey, result);
@@ -134,7 +134,7 @@ public class RoleService
                 IsSuccess = true,
                 StatusCode = 200,
                 Messages = { ResourcesKeys.DATA_LOAD_SUCCESS },
-                Data = data.Adapt<AppRoleModifyModel>()
+                Data = _mapper.Map<AppRoleModifyModel>(data)
             };
 
             _cacheService.Set(cacheKey, result);

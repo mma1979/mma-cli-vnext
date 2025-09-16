@@ -63,7 +63,7 @@
             return Task.FromResult(result);
         }
 
-        public async Task<T> Delete<T>(string resource,  object body=null,
+        public async Task<T> Delete<T>(string resource, object body = null,
                                 List<Tuple<string, object>> urlSegments = null,
                                 List<Tuple<string, object>> parameters = null,
                                 List<Tuple<string, string>> headers = null,
@@ -73,7 +73,7 @@
             return res;
         }
 
-        public async Task<T> Get<T>(string resource, object body=null,
+        public async Task<T> Get<T>(string resource, object body = null,
                                 List<Tuple<string, object>> urlSegments = null,
                                 List<Tuple<string, object>> parameters = null,
                                 List<Tuple<string, string>> headers = null,

@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppRefreshToken
+﻿namespace MmaSolution.Core.Models.Identity.AppRefreshToken
 {
     public partial class AppRefreshTokenModifyModel
     {

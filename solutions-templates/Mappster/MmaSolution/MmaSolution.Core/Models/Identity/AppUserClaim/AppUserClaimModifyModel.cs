@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppUserClaim
+﻿namespace MmaSolution.Core.Models.Identity.AppUserClaim
 {
     public partial class AppUserClaimModifyModel
     {

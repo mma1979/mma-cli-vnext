@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.JsonWebTokens;
+﻿
+using Microsoft.IdentityModel.JsonWebTokens;
 
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
@@ -30,7 +31,7 @@ internal static class JweTokenGenerator
             { ClaimTypes.Role, userRoles}
         };
 
-
+        
 
         // Create token descriptor with both signing and encryption
         var tokenDescriptor = new SecurityTokenDescriptor
@@ -52,7 +53,7 @@ internal static class JweTokenGenerator
 
     public static string GenerateSignedJwtToken(TokenValidationParameters validationParameters, AppUser user, IList<string> userRoles)
     {
-
+        
         // Create claims
         var claims = new List<Claim>
         {
@@ -64,7 +65,7 @@ internal static class JweTokenGenerator
             new( JwtRegisteredClaimNames.Iss, validationParameters.ValidIssuer),
             new( JwtRegisteredClaimNames.Aud, validationParameters.ValidAudience),
             new( JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()),
-
+           
         };
 
 

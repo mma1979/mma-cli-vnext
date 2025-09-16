@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppResource
+﻿namespace MmaSolution.Core.Models.Identity.AppResource
 {
     public partial class AppResourceReadModel
     {

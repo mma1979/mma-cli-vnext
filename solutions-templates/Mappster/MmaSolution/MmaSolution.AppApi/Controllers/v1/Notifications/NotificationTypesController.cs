@@ -1,4 +1,4 @@
-namespace MmaSolution.AppApi.Controllers.v1.Notifications
+﻿namespace MmaSolution.AppApi.Controllers.v1.Notifications
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion(1.0)]
@@ -9,7 +9,7 @@ namespace MmaSolution.AppApi.Controllers.v1.Notifications
         private readonly Services.Translator _translator;
         private readonly ILogger<NotificationTypesController> _logger;
 
-        public NotificationTypesController(NotificationTypeService notificationTypeService,     Services.Translator translator, ILogger<NotificationTypesController> logger) : base(translator)
+        public NotificationTypesController(NotificationTypeService notificationTypeService, Services.Translator translator, ILogger<NotificationTypesController> logger) : base(translator)
         {
             _notificationTypeService = notificationTypeService;
             _translator = translator;
