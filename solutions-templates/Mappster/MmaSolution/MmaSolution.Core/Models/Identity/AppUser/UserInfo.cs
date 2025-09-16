@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Models.Identity.AppUser
+﻿namespace MmaSolution.Core.Models.Identity.AppUser
 {
     public class UserInfo
     {

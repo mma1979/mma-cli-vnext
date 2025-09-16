@@ -20,7 +20,7 @@ public class AppRole : IdentityRole<Guid>, IAuditEntity
         }
     }
 
-    
+
 
     private AppRole()
     {
@@ -29,11 +29,12 @@ public class AppRole : IdentityRole<Guid>, IAuditEntity
     }
     public AppRole(AppRoleModifyModel model)
     {
-
+        Id = model.Id == Guid.Empty ? Guid.CreateVersion7() : model.Id;
         Name = model.Name;
         NormalizedName = model.Name.ToUpper();
         ConcurrencyStamp = DateTime.UtcNow.ToLinuxTime().ToString();
         CreatedDate = DateTime.UtcNow;
+        CreatedBy = model.CreatedBy;
 
     }
 
@@ -57,6 +58,27 @@ public class AppRole : IdentityRole<Guid>, IAuditEntity
         Name = rolename;
     }
 
+    public AppRole AddClaim(AppRoleClaim claim)
+    {
+        AppRoleClaims ??= new HashSet<AppRoleClaim>();
+        AppRoleClaims.Add(claim);
+        return this;
+    }
+
+    public AppRole AddUserRole(Guid userId)
+    {
+        AppUserRoles ??= new HashSet<AppUserRole>();
+        AppUserRoles.Add(new AppUserRole { UserId = userId });
+        return this;
+    }
+
+    public AppRole AddAcl(AppAccessControlEntry adminAcl)
+    {
+        AccessControlEntries ??= [];
+        AccessControlEntries.Add(adminAcl);
+        return this;
+    }
+
     public override int GetHashCode()
     {
         return HashCode.Combine(Name);
@@ -67,4 +89,6 @@ public class AppRole : IdentityRole<Guid>, IAuditEntity
         return obj is AppRole other &&
             Name == other.Name;
     }
+
+
 }

@@ -1,4 +1,4 @@
-namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
 {
     public class AppUserConfig : IEntityTypeConfiguration<AppUser>
     {
@@ -54,19 +54,14 @@ namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
 
 
 
-            builder.Property(e => e.FirstName)
-                .HasMaxLength(50);
-            builder.Property(e => e.LastName)
-                .HasMaxLength(50);
-            builder.Property(e => e.Mobile)
-               .HasMaxLength(20);
-            builder.Property(e => e.CountryCode)
-              .HasMaxLength(20);
-            builder.Property(propertyExpression: e => e.UserName)
+            builder.Property(e => e.FullName)
+                .HasMaxLength(200);
+           
+            builder.Property( e => e.UserName)
               .HasMaxLength(100);
             builder.Property(e => e.NormalizedUserName)
               .HasMaxLength(100);
-            builder.Property(propertyExpression: e => e.Email)
+            builder.Property( e => e.Email)
               .HasMaxLength(100);
             builder.Property(e => e.NormalizedEmail)
               .HasMaxLength(maxLength: 100);
@@ -81,6 +76,29 @@ namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
 
             builder.Property(e => e.PhoneNumber)
            .HasMaxLength(maxLength: 20);
+
+            builder.HasData(new
+            {
+                Id = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+                Hash = -1579056263,
+                FullName = "Admin",
+                TwoFactorMethod = TwoFactorMethods.Email,
+                CreatedDate = new DateTime(2025, 7, 23),
+                IsDeleted = false,
+                UserName = "admin@local.com",
+                NormalizedUserName = "ADMIN@LOCAL.COM",
+                Email = "admin@local.com",
+                NormalizedEmail = "ADMIN@LOCAL.COM",
+                EmailConfirmed = true,
+                PasswordHash = "D01B2782115F692E0E0D52FC64EFE727F52DDA8CB03703898F1D182BD2517251-73073B1B83DFA10409FA469853F87F71",
+                SecurityStamp = "LR2TCJY3QTYEMAG27JLB57NGL6H27HTW",
+                ConcurrencyStamp = "d4f06dc9-8e7f-46ed-85e7-c11f4545470c",
+                PhoneNumber = "+201008983687",
+                PhoneNumberConfirmed = true,
+                TwoFactorEnabled = true,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            });
 
 
 

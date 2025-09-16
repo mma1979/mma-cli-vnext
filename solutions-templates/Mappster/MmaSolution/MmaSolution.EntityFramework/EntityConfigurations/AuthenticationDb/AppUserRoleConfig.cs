@@ -1,4 +1,4 @@
-namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb;
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb;
 
 public class AppUserRoleConfig : IEntityTypeConfiguration<AppUserRole>
 {
@@ -30,5 +30,20 @@ public class AppUserRoleConfig : IEntityTypeConfiguration<AppUserRole>
         builder.Property(e => e.DeletedDate).HasColumnType("datetime");
 
         builder.HasIndex(e => e.UserId);
+
+        builder.HasIndex(e => e.RoleId);
+
+        builder.HasData(new AppUserRole
+        {
+            UserId = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            RoleId = new Guid("6d86280e-f691-4d17-a1c5-d12183f3fafa"),
+            CreatedBy = null,
+            CreatedDate = new DateTime(2025, 7, 23),
+            ModifiedBy = null,
+            ModifiedDate = null,
+            IsDeleted = false,
+            DeletedBy = null,
+            DeletedDate = null
+        });
     }
 }

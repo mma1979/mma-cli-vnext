@@ -1,4 +1,4 @@
-namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb
 {
     internal class VwAclConfig: IEntityTypeConfiguration<VwAcl>
     {

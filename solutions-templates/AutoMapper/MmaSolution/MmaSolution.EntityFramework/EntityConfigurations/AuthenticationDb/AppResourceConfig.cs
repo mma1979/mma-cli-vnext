@@ -38,5 +38,87 @@ public class AppResourceConfig : IEntityTypeConfiguration<AppResource>
         builder.Property(e => e.Description).HasMaxLength(1000);
         builder.Property(e => e.ResourceType).HasDefaultValue(ResourceTypes.API);
 
+        builder.HasData(new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61739"),
+            Url = "api/account",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }),
+        new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61740"),
+            Url = "api/localization",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }),
+        new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61741"),
+            Url = "api/notifications",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }),
+        new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61742"),
+            Url = "api/notification-statuses",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }),
+        new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61743"),
+            Url = "api/notification-types",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }),
+        new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61744"),
+            Url = "api/roles",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }),
+        new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61745"),
+            Url = "api/syssettings",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }),
+        new AppResource(new()
+        {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61746"),
+            Url = "api/attachment",
+            Description = null,
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        })
+        );
+
     }
 }

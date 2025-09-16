@@ -1,12 +1,9 @@
-namespace MmaSolution.Core.Models.Identity.AppUser
+﻿namespace MmaSolution.Core.Models.Identity.AppUser
 {
     public partial class AppUserReadModel
     {
-        public int Hash { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Mobile { get; set; }
-        public string CountryCode { get; set; }
+        public string FullName { get; set; }
+        public string PictureUrl { get; set; }
         public TwoFactorMethods TwoFactorMethod { get; set; }
         public Guid? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -15,7 +12,6 @@ namespace MmaSolution.Core.Models.Identity.AppUser
         public bool? IsDeleted { get; set; }
         public Guid? DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
-        public MembershipTypes MembershipType { get; set; }
         public Guid Id { get; set; }
         public string UserName { get; set; }
         public string NormalizedUserName { get; set; }

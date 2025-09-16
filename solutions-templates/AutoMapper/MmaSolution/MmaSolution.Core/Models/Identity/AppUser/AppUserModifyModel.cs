@@ -2,11 +2,8 @@
 {
     public partial class AppUserModifyModel
     {
-        public int Hash { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Mobile { get; set; }
-        public string CountryCode { get; set; }
+        public string FullName { get; set; }
+        public string PictureUrl { get; set; }
         public TwoFactorMethods TwoFactorMethod { get; set; }
         public Guid? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
@@ -15,7 +12,6 @@
         public bool? IsDeleted { get; set; }
         public Guid? DeletedBy { get; set; }
         public DateTime? DeletedDate { get; set; }
-        public MembershipTypes MembershipType { get; set; }
         public ICollection<AppUserRoleModifyModel> UserRoles { get; set; }
         public ICollection<AppUserTokenModifyModel> UserTokens { get; set; }
         public ICollection<AppRefreshTokenModifyModel> RefreshTokens { get; set; }
