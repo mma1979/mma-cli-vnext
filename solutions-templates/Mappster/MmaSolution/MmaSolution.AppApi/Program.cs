@@ -35,14 +35,14 @@ app.UseDevelopment(!builder.Environment.IsProduction())
     .UseCorsPolicy(builder.Configuration["AllowedOrigins"], builder.Environment)
     .UseSerilogRequestLogging()
     .UseAuthentication() 
-    .UseAuthorization();
+    .UseAuthorization()
+    .UseMiddleware<JwtAuthenticationMiddleware>()
+    .UseMiddleware<PermissionMiddleware>()
+    .UseRemoveHeaders("Server", "X-Powered-By");
 
 
 app.UseMapRoutes();
 
-app.UseMiddleware<JwtAuthenticationMiddleware>()
-    .UseMiddleware<PermissionMiddleware>()
-    .UseRemoveHeaders("Server", "X-Powered-By");
 
 // Migarte database
 using var scope = app.Services.CreateScope();

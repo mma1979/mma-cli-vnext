@@ -87,7 +87,7 @@ public class JwtAuthenticationMiddleware
         }
 
         var roles = claimsIdentity.Claims
-        .Where(c => c.Type == "role")
+        .Where(c => c.Type == ClaimTypes.Role)
         .Select(e => e.Value)
         .ToList();
 
@@ -128,7 +128,7 @@ public class JwtAuthenticationMiddleware
 
     private bool IsAllowedPath(HttpContext context)
     {
-        return context?.GetEndpoint()?.Metadata?.Any(e => e is AllowAnonymousAttribute) == true ||
+        return  context?.GetEndpoint()?.Metadata?.Any(e => e is AllowAnonymousAttribute) == true ||
             context.Request?.Path.ToString().Contains("swagger") == true ||
             context.Request?.Path.ToString().Contains("api-docs") == true ||
             context.Request?.Path.ToString().Contains("health") == true ||

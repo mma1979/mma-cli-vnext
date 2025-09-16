@@ -89,7 +89,7 @@ public class JwtAuthenticationMiddleware
         }
 
         var roles = claimsIdentity.Claims
-        .Where(c => c.Type == "role")
+        .Where(c => c.Type == ClaimTypes.Role)
         .Select(e => e.Value)
         .ToList();
 

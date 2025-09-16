@@ -26,14 +26,11 @@ internal static class JweTokenGenerator
             { JwtRegisteredClaimNames.Aud, validationParameters.ValidAudience },
             { JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
             { JwtRegisteredClaimNames.Nbf, DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
-            { JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(30).ToUnixTimeSeconds() }
+            { JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(30).ToUnixTimeSeconds() },
+            { ClaimTypes.Role, userRoles}
         };
 
 
-        foreach (var userRole in userRoles)
-        {
-            claims.Append(new(ClaimTypes.Role, userRole));
-        }
 
         // Create token descriptor with both signing and encryption
         var tokenDescriptor = new SecurityTokenDescriptor
@@ -53,7 +50,7 @@ internal static class JweTokenGenerator
 
     }
 
-    public static string GenerateSignedJwtToken(TokenValidationParameters validationParameters, AppUser user, List<string> userRoles)
+    public static string GenerateSignedJwtToken(TokenValidationParameters validationParameters, AppUser user, IList<string> userRoles)
     {
 
         // Create claims
