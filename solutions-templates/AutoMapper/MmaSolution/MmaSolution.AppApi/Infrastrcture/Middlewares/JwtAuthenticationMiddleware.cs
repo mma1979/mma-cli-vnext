@@ -1,5 +1,7 @@
 ﻿using Microsoft.IdentityModel.JsonWebTokens;
 
+using Polly;
+
 namespace MmaSolution.AppApi.Infrastrcture.Middlewares;
 
 public class JwtAuthenticationMiddleware
@@ -16,9 +18,10 @@ public class JwtAuthenticationMiddleware
 
     public async Task Invoke(HttpContext context)
     {
-        if (context?.GetEndpoint()?.Metadata?.Any(e => e is AllowAnonymousAttribute) == true)
+        if (IsAllowedPath(context))
         {
             await _next(context);
+            return;
         }
 
         var token = context.Request.Headers["Authorization"].ToString();
@@ -31,6 +34,7 @@ public class JwtAuthenticationMiddleware
             await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Token Type"));
             await context.Response.Body.FlushAsync();
             await _next(context);
+            return;
         }
 
         if (!IsTokenAlive(splits[1]))
@@ -39,6 +43,7 @@ public class JwtAuthenticationMiddleware
             await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Session"));
             await context.Response.Body.FlushAsync();
             await _next(context);
+            return;
         }
         // Use JsonWebTokenHandler for JWE validation
         var tokenHandler = new JsonWebTokenHandler();
@@ -54,6 +59,7 @@ public class JwtAuthenticationMiddleware
                 await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Token"));
                 await context.Response.Body.FlushAsync();
                 await _next(context);
+                return;
             }
 
 
@@ -65,6 +71,7 @@ public class JwtAuthenticationMiddleware
             await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Token"));
             await context.Response.Body.FlushAsync();
             await _next(context);
+            return;
         }
 
         var claimsIdentity = validationResult?.ClaimsIdentity;
@@ -78,6 +85,7 @@ public class JwtAuthenticationMiddleware
             await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Expired Token"));
             await context.Response.Body.FlushAsync();
             await _next(context);
+            return;
         }
 
         var roles = claimsIdentity.Claims
@@ -91,6 +99,7 @@ public class JwtAuthenticationMiddleware
             await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("No Roles"));
             await context.Response.Body.FlushAsync();
             await _next(context);
+            return;
         }
 
         var identity = new ClaimsPrincipal(claimsIdentity);
@@ -117,5 +126,14 @@ public class JwtAuthenticationMiddleware
             Log.Error("Invalid Token", ex, token);
             return false;
         }
+    }
+
+    private bool IsAllowedPath(HttpContext context)
+    {
+        return context?.GetEndpoint()?.Metadata?.Any(e => e is AllowAnonymousAttribute) == true ||
+            context.Request?.Path.ToString().Contains("swagger") == true ||
+            context.Request?.Path.ToString().Contains("api-docs") == true ||
+            context.Request?.Path.ToString().Contains("health") == true ||
+            context.Request?.Path.ToString().Contains("favicon.ico") == true;
     }
 }

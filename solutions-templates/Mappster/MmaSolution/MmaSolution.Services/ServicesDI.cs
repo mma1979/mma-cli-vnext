@@ -1,4 +1,3 @@
-using MmaSolution.Services.EmailService;
 using MmaSolution.Services.SmsService;
 
 namespace MmaSolution.Services;
@@ -12,6 +11,7 @@ public static class ServicesDI
         builder.Services.AddTransient<IMemoryCache, MemoryCache>();
         builder.Services.AddRedisCacheService();
         builder.Services.AddSingleton<Common.Infrastructure.PasswordHasher>();
+        builder.Services.AddRestHelper();
 
         builder.Services.AddTransient<LocalizationSerivce>();
         builder.Services.AddTransient<AccountService>();

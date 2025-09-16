@@ -1,5 +1,8 @@
 namespace MmaSolution.AppApi.Controllers.v1;
 
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion(1.0)]
+[ApiController]
 public class RolesController : BaseController
 {
     private readonly RoleService _roleService;

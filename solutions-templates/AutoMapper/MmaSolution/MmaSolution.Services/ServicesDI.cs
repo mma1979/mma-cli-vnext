@@ -11,6 +11,7 @@ namespace MmaSolution.Services
             builder.Services.AddTransient<IMemoryCache, MemoryCache>();
             builder.Services.AddRedisCacheService();
             builder.Services.AddSingleton<Common.Infrastructure.PasswordHasher>();
+            builder.Services.AddRestHelper();
 
             builder.Services.AddTransient<LocalizationSerivce>();
             builder.Services.AddTransient<AccountService>();

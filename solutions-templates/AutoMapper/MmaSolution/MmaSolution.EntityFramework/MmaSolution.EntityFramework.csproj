@@ -24,9 +24,4 @@
     <ProjectReference Include="..\MmaSolution.Core\MmaSolution.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\ApplicationDb\" />
-    <Folder Include="Migrations\AuthenticationDb\" />
-  </ItemGroup>
-
 </Project>

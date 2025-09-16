@@ -1,6 +1,7 @@
 namespace MmaSolution.AppApi.Controllers.v1
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion(1.0)]
     [ApiController]
     [ApiExplorerSettings(IgnoreApi = true)]
     public class AttachmentController : ControllerBase

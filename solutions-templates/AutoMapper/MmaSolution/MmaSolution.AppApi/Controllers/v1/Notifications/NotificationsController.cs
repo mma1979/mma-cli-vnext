@@ -1,234 +1,233 @@
-﻿namespace MmaSolution.AppApi.Controllers.v1.Notifications
+﻿namespace MmaSolution.AppApi.Controllers.v1.Notifications;
+
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion(1.0)]
+[ApiController]
+public class NotificationsController : BaseController
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class NotificationsController : BaseController
+    private readonly NotificationService _notificationService;
+    private readonly Services.Translator _translator;
+    private readonly ILogger<NotificationsController> _logger;
+
+    public NotificationsController(NotificationService notificationService, Services.Translator translator, ILogger<NotificationsController> logger) : base(translator)
     {
-        private readonly NotificationService _notificationService;
-        private readonly Services.Translator _translator;
-        private readonly ILogger<NotificationsController> _logger;
-
-        public NotificationsController(NotificationService notificationService, Services.Translator translator, ILogger<NotificationsController> logger) : base(translator)
-        {
-            _notificationService = notificationService;
-            _translator = translator;
-            _logger = logger;
-        }
-
-
-
-        [HttpGet]
-        [RequiredPermission("Read")]
-        public async Task<IActionResult> GetAll([FromQuery] QueryViewModel query, CancellationToken cancellationToken)
-        {
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return BadRequest(new
-                {
-                    IsSuccess = false,
-                    Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
-                });
-            }
-            var result = new ResultViewModel<List<NotificationReadModel>>();
-            try
-            {
-                _ = Guid.TryParse(User.FindFirstValue("Id"), out Guid userId);
-                query.UserId = userId;
-                var data = await _notificationService.All(query);
-                data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
-                if (data.IsSuccess)
-                    return Ok(data);
-
-                return BadRequest(data);
-
-            }
-            catch (HttpException ex)
-            {
-                _logger.LogError(ex.Message, query, ex);
-                return BadRequest(HandleHttpException<List<NotificationReadModel>>(ex));
-            }
-            catch (Exception ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                result.IsSuccess = false;
-                result.StatusCode = 500;
-                return BadRequest(result);
-            }
-        }
-
-        [HttpGet("{id}")]
-        [RequiredPermission("Read")]
-        public async Task<IActionResult> GetOne(Guid id, CancellationToken cancellationToken)
-        {
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return BadRequest(new
-                {
-                    IsSuccess = false,
-                    Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
-                });
-            }
-            var result = new ResultViewModel<NotificationModifyModel>();
-            try
-            {
-                var data = await _notificationService.Find(id);
-                data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
-
-                if (data.IsSuccess)
-
-                    return Ok(data);
-
-                return BadRequest(data);
-
-            }
-            catch (HttpException ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                return BadRequest(HandleHttpException<NotificationModifyModel>(ex));
-            }
-            catch (Exception ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                result.IsSuccess = false;
-                result.StatusCode = 500;
-                return BadRequest(result);
-            }
-        }
-
-
-
-        [HttpPost]
-        [RequiredPermission("Create")]
-        public async Task<IActionResult> PostNotification([FromBody] NotificationModifyModel model, CancellationToken cancellationToken)
-        {
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return BadRequest(new
-                {
-                    IsSuccess = false,
-                    Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
-                });
-            }
-            var result = new AcknowledgeViewModel();
-            try
-            {
-                var data = await _notificationService.Add(model);
-                data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
-
-                if (data.IsSuccess)
-                    return Ok(data);
-
-                return BadRequest(data);
-
-            }
-            catch (HttpException ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                return BadRequest(HandleHttpException(ex));
-            }
-            catch (Exception ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                result.IsSuccess = false;
-                result.StatusCode = 500;
-                return BadRequest(result);
-            }
-        }
-
-        [HttpPut("{id}")]
-        [RequiredPermission("Update")]
-        public async Task<IActionResult> PutNotification(Guid id, [FromBody] NotificationModifyModel model, CancellationToken cancellationToken)
-        {
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return BadRequest(new
-                {
-                    IsSuccess = false,
-                    Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
-                });
-            }
-
-            var result = new AcknowledgeViewModel();
-            try
-            {
-                if (model.Id != id)
-                {
-                    result.IsSuccess = false;
-                    result.Messages.Add(_translator.Translate("InvalidData", Language));
-                    return BadRequest(result);
-                }
-                var data = await _notificationService.Update(model);
-                data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
-
-                if (data.IsSuccess)
-                    return Ok(data);
-
-                return BadRequest(data);
-
-            }
-            catch (HttpException ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                return BadRequest(HandleHttpException(ex));
-            }
-            catch (Exception ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                result.IsSuccess = false;
-                result.StatusCode = 500;
-                return BadRequest(result);
-            }
-        }
-
-        [HttpDelete("{id}")]
-        [RequiredPermission("Update,Delete")]
-        public async Task<IActionResult> DeleteNotification(Guid id, CancellationToken cancellationToken)
-        {
-            if (cancellationToken.IsCancellationRequested)
-            {
-                return BadRequest(new
-                {
-                    IsSuccess = false,
-                    Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
-                });
-            }
-
-            var result = new AcknowledgeViewModel();
-            try
-            {
-                var data = await _notificationService.Delete(id);
-                data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
-
-                if (data.IsSuccess)
-                    return Ok(data);
-
-                return BadRequest(data);
-
-            }
-            catch (HttpException ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                return BadRequest(HandleHttpException(ex));
-            }
-            catch (Exception ex)
-            {
-
-                _logger.LogError(ex.Message, ex);
-                result.IsSuccess = false;
-                result.StatusCode = 500;
-                return BadRequest(result);
-            }
-        }
-
-
+        _notificationService = notificationService;
+        _translator = translator;
+        _logger = logger;
     }
+
+
+
+    [HttpGet]
+    [RequiredPermission("Read")]
+    public async Task<IActionResult> GetAll([FromQuery] QueryViewModel query, CancellationToken cancellationToken)
+    {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return BadRequest(new
+            {
+                IsSuccess = false,
+                Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
+            });
+        }
+        var result = new ResultViewModel<List<NotificationReadModel>>();
+        try
+        {
+            _ = Guid.TryParse(User.FindFirstValue("Id"), out Guid userId);
+            query.UserId = userId;
+            var data = await _notificationService.All(query);
+            data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
+            if (data.IsSuccess)
+                return Ok(data);
+
+            return BadRequest(data);
+
+        }
+        catch (HttpException ex)
+        {
+            _logger.LogError(ex.Message, query, ex);
+            return BadRequest(HandleHttpException<List<NotificationReadModel>>(ex));
+        }
+        catch (Exception ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            result.IsSuccess = false;
+            result.StatusCode = 500;
+            return BadRequest(result);
+        }
+    }
+
+    [HttpGet("{id}")]
+    [RequiredPermission("Read")]
+    public async Task<IActionResult> GetOne(Guid id, CancellationToken cancellationToken)
+    {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return BadRequest(new
+            {
+                IsSuccess = false,
+                Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
+            });
+        }
+        var result = new ResultViewModel<NotificationModifyModel>();
+        try
+        {
+            var data = await _notificationService.Find(id);
+            data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
+
+            if (data.IsSuccess)
+
+                return Ok(data);
+
+            return BadRequest(data);
+
+        }
+        catch (HttpException ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            return BadRequest(HandleHttpException<NotificationModifyModel>(ex));
+        }
+        catch (Exception ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            result.IsSuccess = false;
+            result.StatusCode = 500;
+            return BadRequest(result);
+        }
+    }
+
+
+
+    [HttpPost]
+    [RequiredPermission("Create")]
+    public async Task<IActionResult> PostNotification([FromBody] NotificationModifyModel model, CancellationToken cancellationToken)
+    {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return BadRequest(new
+            {
+                IsSuccess = false,
+                Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
+            });
+        }
+        var result = new AcknowledgeViewModel();
+        try
+        {
+            var data = await _notificationService.Add(model);
+            data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
+
+            if (data.IsSuccess)
+                return Ok(data);
+
+            return BadRequest(data);
+
+        }
+        catch (HttpException ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            return BadRequest(HandleHttpException(ex));
+        }
+        catch (Exception ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            result.IsSuccess = false;
+            result.StatusCode = 500;
+            return BadRequest(result);
+        }
+    }
+
+    [HttpPut("{id}")]
+    [RequiredPermission("Update")]
+    public async Task<IActionResult> PutNotification(Guid id, [FromBody] NotificationModifyModel model, CancellationToken cancellationToken)
+    {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return BadRequest(new
+            {
+                IsSuccess = false,
+                Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
+            });
+        }
+
+        var result = new AcknowledgeViewModel();
+        try
+        {
+            if (model.Id != id)
+            {
+                result.IsSuccess = false;
+                result.Messages.Add(_translator.Translate("InvalidData", Language));
+                return BadRequest(result);
+            }
+            var data = await _notificationService.Update(model);
+            data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
+
+            if (data.IsSuccess)
+                return Ok(data);
+
+            return BadRequest(data);
+
+        }
+        catch (HttpException ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            return BadRequest(HandleHttpException(ex));
+        }
+        catch (Exception ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            result.IsSuccess = false;
+            result.StatusCode = 500;
+            return BadRequest(result);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    [RequiredPermission("Update,Delete")]
+    public async Task<IActionResult> DeleteNotification(Guid id, CancellationToken cancellationToken)
+    {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return BadRequest(new
+            {
+                IsSuccess = false,
+                Messages = new[] { _translator.Translate(ResourcesKeys.REQUEST_CANCELED, Language) }
+            });
+        }
+
+        var result = new AcknowledgeViewModel();
+        try
+        {
+            var data = await _notificationService.Delete(id);
+            data.Messages = data.Messages.Select(m => _translator.Translate(m, Language)).ToList();
+
+            if (data.IsSuccess)
+                return Ok(data);
+
+            return BadRequest(data);
+
+        }
+        catch (HttpException ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            return BadRequest(HandleHttpException(ex));
+        }
+        catch (Exception ex)
+        {
+
+            _logger.LogError(ex.Message, ex);
+            result.IsSuccess = false;
+            result.StatusCode = 500;
+            return BadRequest(result);
+        }
+    }
+
 
 }

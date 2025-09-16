@@ -1,6 +1,7 @@
 namespace MmaSolution.AppApi.Controllers.v1.Account
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion(1.0)]
     [ApiController]
     public class AccountController : ControllerBase
     {

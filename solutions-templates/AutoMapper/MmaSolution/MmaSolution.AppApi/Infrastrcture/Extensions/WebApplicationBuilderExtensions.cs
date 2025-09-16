@@ -8,17 +8,17 @@ public static class WebApplicationBuilderExtensions
         builder.Configuration
 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName.Trim(' ')}.json", optional: true, reloadOnChange: true)
-            .AddSqlServerJson(source =>
-            {
-                source.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
-                source.TableName = "SysSettings";
-                source.KeyColumn = "SysKey";
-                source.JsonColumn = "SysValue";
-                source.EnvironmentColumn = "Environment";
-                source.Environment = builder.Environment.EnvironmentName;
-                source.ReloadOnChange = true;
-                source.ReloadInterval = TimeSpan.FromMinutes(5);
-            })
+            //.AddSqlServerJson(source =>
+            //{
+            //    source.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+            //    source.TableName = "SysSettings";
+            //    source.KeyColumn = "SysKey";
+            //    source.JsonColumn = "SysValue";
+            //    source.EnvironmentColumn = "Environment";
+            //    source.Environment = builder.Environment.EnvironmentName;
+            //    source.ReloadOnChange = true;
+            //    source.ReloadInterval = TimeSpan.FromMinutes(5);
+            //})
             .AddEnvironmentVariables();
 
         return builder;
