@@ -34,7 +34,11 @@ public class PermissionMiddleware
             var userManager = context.RequestServices.GetRequiredService<UserManager<AppUser>>();
 
             var roles = await userManager.GetRolesAsync(await userManager.FindByIdAsync(userId));
-
+            if (roles.Contains("Admin"))
+            {
+                await _next(context);
+                return;
+            }
             var controller = context.GetRouteValue("controller")?.ToString().ToLower();
             var action = context.GetRouteValue("action")?.ToString().ToLower();
             //var tenantId = context.Request.Headers["Tenant-Id"].ToString();

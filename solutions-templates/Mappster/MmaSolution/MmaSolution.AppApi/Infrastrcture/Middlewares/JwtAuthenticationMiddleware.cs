@@ -22,10 +22,10 @@ public class JwtAuthenticationMiddleware
             return;
         }
 
-        var token = context.Request.Headers["Authorization"].ToString();
+        var authHeader = context.Request.Headers["Authorization"].ToString();
 
 
-        var splits = token.Split(' ');
+        var splits = authHeader.Split(' ');
         if (splits.Length < 2)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
@@ -34,8 +34,8 @@ public class JwtAuthenticationMiddleware
             await _next(context);
             return;
         }
-
-        if (!IsTokenAlive(splits[1]))
+        var token = splits[1];
+        if (!IsTokenAlive(token))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Session"));
@@ -132,6 +132,7 @@ public class JwtAuthenticationMiddleware
             context.Request?.Path.ToString().Contains("swagger") == true ||
             context.Request?.Path.ToString().Contains("api-docs") == true ||
             context.Request?.Path.ToString().Contains("health") == true ||
+            context.Request?.Path.ToString().Contains("robots.txt") == true ||
             context.Request?.Path.ToString().Contains("favicon.ico") == true;
     }
 }
