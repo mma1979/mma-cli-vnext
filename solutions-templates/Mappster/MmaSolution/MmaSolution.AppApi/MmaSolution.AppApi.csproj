@@ -55,10 +55,4 @@
     <ProjectReference Include="..\MmaSolution.Services\MmaSolution.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\resources\db\resources.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

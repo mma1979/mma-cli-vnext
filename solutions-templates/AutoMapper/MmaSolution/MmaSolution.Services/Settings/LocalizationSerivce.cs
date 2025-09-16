@@ -22,7 +22,7 @@
                 if(!string.IsNullOrEmpty(cached)) return cached;
 
                 using var scope = _scopeFactory.CreateScope();
-                using var context = scope.ServiceProvider.GetRequiredService<LocalizationDbContext>();
+                using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 var value = context.Resources
                     .Include(e=>e.Language)
                     .FirstOrDefault(e => e.Key == key && e.Language.LanguageCode == language)?.Value;
@@ -52,7 +52,7 @@
                 if (!string.IsNullOrEmpty(cached)) return cached;
 
                 using var scope = _scopeFactory.CreateScope();
-                using var context = scope.ServiceProvider.GetRequiredService<LocalizationDbContext>();
+                using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 var value = (await context.Resources
                     .Include(e=>e.Language)
                     .FirstOrDefaultAsync(e => e.Key == key && e.Language.LanguageCode == language))?.Value;
@@ -82,7 +82,7 @@ try
                 if (cached != default) return cached; 
                 
                 using var scope = _scopeFactory.CreateScope();
-                using var context = scope.ServiceProvider.GetRequiredService<LocalizationDbContext>();
+                using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
                 var tasks = keys.Select(async k=> (await context.Resources
                 .Include(e=>e.Language)
@@ -115,7 +115,7 @@ try
                 if (cached != default) return cached;
 
                 using var scope = _scopeFactory.CreateScope();
-                using var context = scope.ServiceProvider.GetRequiredService<LocalizationDbContext>();
+                using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 var tasks = keys.Select(async k => (await context.Resources
                 .Include(e=>e.Language)
                 .FirstOrDefaultAsync(e => e.Key == k && e.Language.LanguageCode == language)) ?? new Core.Database.Localization.Resource { Key = k, Value = k });

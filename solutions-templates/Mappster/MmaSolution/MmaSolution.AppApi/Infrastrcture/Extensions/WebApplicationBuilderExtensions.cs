@@ -136,7 +136,6 @@ public static class WebApplicationBuilderExtensions
 
         builder.Services.AddDbContext<LoggingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LogsConnection")));
 
-        builder.Services.AddDbContext<LocalizationDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("LocalizationConnection")));
         #endregion
         return builder;
     }

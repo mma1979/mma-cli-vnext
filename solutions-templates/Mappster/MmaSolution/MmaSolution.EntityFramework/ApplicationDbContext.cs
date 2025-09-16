@@ -26,7 +26,9 @@ public class ApplicationDbContext : DbContext
 
     public virtual DbSet<SysSetting> SysSettings { get; set; }
     public virtual DbSet<Attachment> Attachments { get; set; }
-           
+
+    public virtual DbSet<Language> Languages { get; set; }
+    public virtual DbSet<Resource> Resources { get; set; }
 
     public virtual DbSet<Notification> Notifications { get; set; }
     public virtual DbSet<EmailNotification> EmailNotifications { get; set; }
@@ -60,7 +62,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new NotificationConfig());
         modelBuilder.ApplyConfiguration(new NotificationStatusConfig());
         modelBuilder.ApplyConfiguration(new NotificationTypeConfig());
-
+        modelBuilder.ApplyConfiguration(new LanguageConfig());
+        modelBuilder.ApplyConfiguration(new ResourcesConfig());
     }
 
     public bool HardDelete<T>(Expression<Func<T, bool>> expression) where T : class

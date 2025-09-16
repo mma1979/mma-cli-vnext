@@ -1,4 +1,4 @@
-namespace MmaSolution.Core.Consts;
+﻿namespace MmaSolution.Core.Consts;
 
 public static class ResourcesKeys
 {
@@ -11,6 +11,8 @@ public static class ResourcesKeys
     public const string DATA_SAVE_SUCCESS = "DATA_SAVE_SUCCESS";
     public const string EMAIL_CONFIRM_SUCCESS = "EMAIL_CONFIRM_SUCCESS";
     public const string EMAIL_CONFIRM_ERROR = "EMAIL_CONFIRM_ERROR";
+    public const string PHONE_CONFIRM_SUCCESS = "PHONE_CONFIRM_SUCCESS";
+    public const string PHONE_CONFIRM_ERROR = "PHONE_CONFIRM_ERROR";
     public const string DATA_LOAD_ERROR = "DATA_LOAD_ERROR";
     public const string DATA_READ_ERROR = "DATA_READ_ERROR";
     public const string DATA_REMOVE_ERROR = "DATA_REMOVE_ERROR";
@@ -35,4 +37,25 @@ public static class ResourcesKeys
     public const string USER_NOT_EXIST = "USER_NOT_EXIST";
     public const string USER_LOGGED_OUT = "USER_LOGGED_OUT";
     public const string TOKEN_NOT_EXPIRED_CANNOT_REFRESH = "TOKEN_NOT_EXPIRED_CANNOT_REFRESH";
+    public const string RESOURCE_ALREADY_EXISTS = "RESOURCE_ALREADY_EXISTS";
+    public const string DATA_RESTORED_SUCCESS = "DATA_RESTORED_SUCCESS";
+
+    public const string EMAIL_NOT_CONFIRMED = "EMAIL_NOT_CONFIRMED";
+    public const string PHONE_NOT_CONFIRMED = "PHONE_NOT_CONFIRMED";
+
+    public const string CLIENT_ALREADY_EXISTS = "CLIENT_ALREADY_EXISTS";
+
+    public const string ROLE_ALREADY_EXISTS = "ROLE_ALREADY_EXISTS";
+
+    public const string FORGET_PASSWORD_VERIFIED = "FORGET_PASSWORD_VERIFIED";
+
+    public const string OTP_RQUEST_SUCCESS = "OTP_RQUEST_SUCCESS";
+
+    public const string CLIENT_NOT_FOUND = "CLIENT_NOT_FOUND";
+
+    public const string INVALID_FILE = "INVALID_FILE";
+
+    public const string FILE_TOO_LARGE = "FILE_TOO_LARGE";
+    public const string FILE_IS_PROCESSING = "FILE_IS_PROCESSING";
+    public const string FILE_FAILED_PROCESSING = "FILE_FAILED_PROCESSING";
 }
