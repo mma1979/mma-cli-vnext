@@ -39,20 +39,7 @@ app.UseMapRoutes();
 
 
 // Migarte database
-using var scope = app.Services.CreateScope();
-var logContext = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
-var authContext = scope.ServiceProvider.GetRequiredService<AuthenticationDbContext>();
-var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-logContext.Database.EnsureCreated();
-logContext.Database.Migrate();
-
-
-authContext.Database.EnsureCreated();
-authContext.Database.Migrate();
-
-dbContext.Database.EnsureCreated();
-dbContext.Database.Migrate();
+app.UseMiddleware<DatabasesMigrationsMidleware>();
 
 
 app.Run();
