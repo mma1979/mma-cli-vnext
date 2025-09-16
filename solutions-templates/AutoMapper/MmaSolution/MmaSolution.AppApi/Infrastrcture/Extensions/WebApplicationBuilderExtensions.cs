@@ -143,21 +143,28 @@ public static class WebApplicationBuilderExtensions
         #region Authentication & JWT
 
         builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JWT"));
+        var jwtConfig = builder.Configuration.GetSection("JWT").Get<JwtConfig>();
         // add validation paramter as singletone so that we can use it across the appications
         TokenValidationParameters tokenValidationParameters = new()
         {
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
-            ValidateIssuerSigningKey = true,
+            // **JWE Decryption Key**
+            TokenDecryptionKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.TokenDecryptionKey)),
+
+            // **Inner JWT Validation Parameters**
+            ValidateAudience = true,
+            ValidAudience = jwtConfig.ValidAudience,
+            ValidateIssuer = true,
+            ValidIssuer = jwtConfig.ValidIssuer,
             ValidateLifetime = true,
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidAudience = builder.Configuration["JWT:ValidAudience"],
-            ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-            RequireExpirationTime = false,
-            // Allow to use seconds for expiration of token
-            // Required only when token lifetime less than 5 minutes
-            // THIS ONE
-            ClockSkew = TimeSpan.Zero
+            ClockSkew = TimeSpan.Zero,
+
+            // **Inner JWT Signing Key**
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.IssuerSigningKey)),
+
+            // Important: Set these for proper JWE handling
+            RequireSignedTokens = true,
+            ValidateTokenReplay = false
         };
 
         builder.Services.AddSingleton(tokenValidationParameters);
@@ -176,6 +183,8 @@ public static class WebApplicationBuilderExtensions
             options.RequireHttpsMetadata = false;
             options.TokenValidationParameters = tokenValidationParameters;
         });
+
+        builder.Services.AddAuthorization();
 
         // For Identity
         builder.Services.AddIdentity<AppUser, AppRole>(options => options.SignIn.RequireConfirmedAccount = true)

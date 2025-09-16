@@ -1,3 +1,5 @@
+using Microsoft.IdentityModel.JsonWebTokens;
+
 namespace MmaSolution.AppApi.Infrastrcture.Middlewares;
 
 public class JwtAuthenticationMiddleware
@@ -20,45 +22,41 @@ public class JwtAuthenticationMiddleware
         }
 
         var token = context.Request.Headers["Authorization"].ToString();
-        if (string.IsNullOrEmpty(token) || string.IsNullOrWhiteSpace(token))
-        {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("No Token Provided"));
-            await context.Response.Body.FlushAsync();
-            await _next(context);
-        }
 
-        (bool isValid, string jwtToken) = DecryptAndValidate(token);
-        if (!isValid)
-        {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Token"));
-            await context.Response.Body.FlushAsync();
-            await _next(context);
-        }
 
-        //TODO: invock token from user tokens
-
-        var splits = jwtToken.Split('.');
-        if (splits.Length < 3)
+        var splits = token.Split(' ');
+        if (splits.Length < 2)
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
             await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Token Type"));
             await context.Response.Body.FlushAsync();
             await _next(context);
         }
-        var handler = new JwtSecurityTokenHandler();
-        JwtSecurityToken tokenInfo = null;
+
+        if (!IsTokenAlive(splits[1]))
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Session"));
+            await context.Response.Body.FlushAsync();
+            await _next(context);
+        }
+        // Use JsonWebTokenHandler for JWE validation
+        var tokenHandler = new JsonWebTokenHandler();
+
+        TokenValidationResult validationResult = null;
         try
         {
-            handler.ValidateToken(jwtToken, tokenValidationParameters, out SecurityToken validatedToken);
+            validationResult = await tokenHandler.ValidateTokenAsync(token, tokenValidationParameters);
 
-            if (validatedToken == null)
+            if (validationResult == null || !validationResult.IsValid)
             {
-                throw new Exception();
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Invalid Token"));
+                await context.Response.Body.FlushAsync();
+                await _next(context);
             }
 
-            tokenInfo = handler.ReadJwtToken(jwtToken);
+
         }
         catch (Exception)
         {
@@ -69,9 +67,9 @@ public class JwtAuthenticationMiddleware
             await _next(context);
         }
 
-        // Expiration Handle
-        long.TryParse(tokenInfo.Claims.FirstOrDefault(c => c.Type == "exp")?.Value, out var exp);
+        var claimsIdentity = validationResult?.ClaimsIdentity;
 
+        var exp = long.Parse(claimsIdentity.Claims.Where(c => c.Type == "exp").FirstOrDefault()?.Value ?? "0");
         var now = (long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
 
         if (exp <= now)
@@ -82,7 +80,7 @@ public class JwtAuthenticationMiddleware
             await _next(context);
         }
 
-        var roles = tokenInfo.Claims
+        var roles = claimsIdentity.Claims
         .Where(c => c.Type == "role")
         .Select(e => e.Value)
         .ToList();
@@ -95,38 +93,29 @@ public class JwtAuthenticationMiddleware
             await _next(context);
         }
 
-        var identity = new ClaimsPrincipal(new ClaimsIdentity(tokenInfo.Claims));
+        var identity = new ClaimsPrincipal(claimsIdentity);
         context.User = identity;
         await _next(context);
     }
 
-    private (bool isValid, string jwtToken) DecryptAndValidate(string token)
+    private bool IsTokenAlive(string token)
     {
         try
         {
-
-            var secToken = token.Split(' ')[1];
-            var secParts = secToken.Split('.');
 
             var connectionStr = _configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
             using var connection = new SqlConnection(connectionStr);
             if (connection.State != System.Data.ConnectionState.Open)
                 connection.Open();
-            var query = "select * from AppUserTokens where Name=@Name and UserId=@UserId and Value=@Value";
-            var data = connection.Query<AppUserTokenReadModel>(query, new { Name = TokenTypes.LOGIN_TOKEN, UserId = secParts[^1], Value = secToken }).AsList();
-            if (!data.Any())
-            {
-                return (false, string.Empty);
-            }
+            var query = "select * from AppUserTokens where Name=@Name and Token=@Token and Value=@Value";
+            var data = connection.Query<AppUserTokenReadModel>(query, new { Name = TokenTypes.LOGIN_TOKEN, Token = token.ToUniqueNumericValue().ToString(), Value = token }).AsList();
 
-            var decrypted = secParts[0].DecryptMe();
-            var hash = decrypted.GenerateUniqueNumber().ToString();
-            return (hash == secParts[1], decrypted);
+            return data.Any();
         }
         catch (Exception ex)
         {
             Log.Error("Invalid Token", ex, token);
-            return (false, string.Empty);
+            return false;
         }
     }
 }

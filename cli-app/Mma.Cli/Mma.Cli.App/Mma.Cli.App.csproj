@@ -44,4 +44,8 @@
 		<ProjectReference Include="..\Mma.Cli.Shared\Mma.Cli.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="nupkg\" />
+	</ItemGroup>
+
 </Project>
