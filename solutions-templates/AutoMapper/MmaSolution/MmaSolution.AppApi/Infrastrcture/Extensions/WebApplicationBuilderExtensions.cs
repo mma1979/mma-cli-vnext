@@ -130,7 +130,6 @@ public static class WebApplicationBuilderExtensions
             serviceProvider.GetRequiredService<AuditCreateInerceptor>()
         ));
 
-        builder.Services.AddDbContext<LoggingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LogsConnection")));
 
         #endregion
         return builder;

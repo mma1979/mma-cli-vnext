@@ -1,22 +1,18 @@
-namespace MmaSolution.EntityFramework.EntityConfigurations
+namespace MmaSolution.EntityFramework.EntityConfigurations.ApplicationDb
 {
-    public class NotificationConfig : IEntityTypeConfiguration<Notification>
+    public class NotificationTypeConfig : IEntityTypeConfiguration<NotificationType>
     {
         private readonly string _schema;
-        public NotificationConfig(string schema = "dbo")
+        public NotificationTypeConfig(string schema = "dbo")
         {
             _schema = schema;
         }
 
        
-        public void Configure(EntityTypeBuilder<Notification> builder)
+        public void Configure(EntityTypeBuilder<NotificationType> builder)
         {
-            builder.ToTable("Notifications", _schema);
+            builder.ToTable("NotificationTypes", _schema);
 
-
-            builder.Property(e => e.Id)
-               .ValueGeneratedOnAdd()
-               .HasValueGenerator<GuidV7ValueGenerator>();
 
             builder.HasQueryFilter(e => e.IsDeleted != true);
             builder.Property(e => e.IsDeleted).IsRequired()
@@ -35,10 +31,9 @@ namespace MmaSolution.EntityFramework.EntityConfigurations
             builder.HasIndex(e => e.IsDeleted);
             builder.Property(e => e.DeletedDate).HasColumnType("datetime");
 
-            builder.HasIndex(e => new { e.NotificationType, e.NotificationStatus, e.Periority, e.ExpireTime, e.IsRead });
+            builder.Property(e => e.Name).HasMaxLength(150);
+            builder.Property(e => e.Description).HasMaxLength(500);
 
-            builder.Property(e => e.Message).HasMaxLength(1000);
-            builder.Property(e => e.IsRead).HasDefaultValue(false);
 
         }
     }

@@ -10,7 +10,7 @@ global using Newtonsoft.Json;
 global using Newtonsoft.Json.Linq;
 global using MmaSolution.EntityFramework.Infrastrcture.ValueGenerator;
 global using MmaSolution.EntityFramework.Infrastrcture.ValueConverters;
-global using MmaSolution.EntityFramework.EntityConfigurations;
+global using MmaSolution.EntityFramework.EntityConfigurations.ApplicationDb;
 global using MmaSolution.EntityFramework.EntityConfigurations.AuthenticationDb;
 global using MmaSolution.Core;
 global using MmaSolution.Core.Enums;

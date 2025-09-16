@@ -1,17 +1,17 @@
-﻿namespace MmaSolution.EntityFramework.EntityConfigurations
+namespace MmaSolution.EntityFramework.EntityConfigurations.ApplicationDb
 {
-    public class NotificationTypeConfig : IEntityTypeConfiguration<NotificationType>
+    public class NotificationStatusConfig : IEntityTypeConfiguration<NotificationStatus>
     {
         private readonly string _schema;
-        public NotificationTypeConfig(string schema = "dbo")
+        public NotificationStatusConfig(string schema = "dbo")
         {
             _schema = schema;
         }
 
        
-        public void Configure(EntityTypeBuilder<NotificationType> builder)
+        public void Configure(EntityTypeBuilder<NotificationStatus> builder)
         {
-            builder.ToTable("NotificationTypes", _schema);
+            builder.ToTable("NotificationStatuses", _schema);
 
 
             builder.HasQueryFilter(e => e.IsDeleted != true);
@@ -25,7 +25,7 @@
              .HasValueGenerator<CreatedDateTimeValueGenerator>();
 
             builder.Property(e => e.ModifiedDate)
-               .HasColumnType("datetime");
+                .HasColumnType("datetime");
 
 
             builder.HasIndex(e => e.IsDeleted);

@@ -1,17 +1,17 @@
-namespace MmaSolution.EntityFramework.EntityConfigurations
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.ApplicationDb
 {
-    public class SysSettingConfig : IEntityTypeConfiguration<SysSetting>
+    public class NotificationTypeConfig : IEntityTypeConfiguration<NotificationType>
     {
         private readonly string _schema;
-        public SysSettingConfig(string schema = "dbo")
+        public NotificationTypeConfig(string schema = "dbo")
         {
             _schema = schema;
         }
 
-
-        public void Configure(EntityTypeBuilder<SysSetting> builder)
+       
+        public void Configure(EntityTypeBuilder<NotificationType> builder)
         {
-            builder.ToTable("SysSettings", _schema);
+            builder.ToTable("NotificationTypes", _schema);
 
 
             builder.HasQueryFilter(e => e.IsDeleted != true);
@@ -25,18 +25,15 @@ namespace MmaSolution.EntityFramework.EntityConfigurations
              .HasValueGenerator<CreatedDateTimeValueGenerator>();
 
             builder.Property(e => e.ModifiedDate)
-              .HasColumnType("datetime");
+               .HasColumnType("datetime");
 
 
             builder.HasIndex(e => e.IsDeleted);
             builder.Property(e => e.DeletedDate).HasColumnType("datetime");
 
+            builder.Property(e => e.Name).HasMaxLength(150);
+            builder.Property(e => e.Description).HasMaxLength(500);
 
-            builder.Property(e => e.SysKey).HasMaxLength(200);
-            builder.HasIndex(e => e.SysKey);
-
-            builder.Property(e => e.SysValue)
-                .HasConversion<JsonDictionaryConverter>();
 
         }
     }

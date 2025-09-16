@@ -1,4 +1,4 @@
-﻿namespace MmaSolution.EntityFramework.EntityConfigurations
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.ApplicationDb
 {
     public class AttachmentConfig : IEntityTypeConfiguration<Attachment>
     {

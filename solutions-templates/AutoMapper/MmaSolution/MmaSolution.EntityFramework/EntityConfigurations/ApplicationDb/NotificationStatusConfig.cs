@@ -1,21 +1,18 @@
-namespace MmaSolution.EntityFramework.EntityConfigurations
+﻿namespace MmaSolution.EntityFramework.EntityConfigurations.ApplicationDb
 {
-    public class AttachmentConfig : IEntityTypeConfiguration<Attachment>
+    public class NotificationStatusConfig : IEntityTypeConfiguration<NotificationStatus>
     {
         private readonly string _schema;
-        public AttachmentConfig(string schema = "dbo")
+        public NotificationStatusConfig(string schema = "dbo")
         {
             _schema = schema;
         }
 
        
-        public void Configure(EntityTypeBuilder<Attachment> builder)
+        public void Configure(EntityTypeBuilder<NotificationStatus> builder)
         {
-            builder.ToTable("Attachments", _schema);
+            builder.ToTable("NotificationStatuses", _schema);
 
-            builder.Property(e => e.Id)
-              .ValueGeneratedOnAdd()
-              .HasValueGenerator<GuidV7ValueGenerator>();
 
             builder.HasQueryFilter(e => e.IsDeleted != true);
             builder.Property(e => e.IsDeleted).IsRequired()
@@ -34,10 +31,10 @@ namespace MmaSolution.EntityFramework.EntityConfigurations
             builder.HasIndex(e => e.IsDeleted);
             builder.Property(e => e.DeletedDate).HasColumnType("datetime");
 
-            builder.Property(e => e.FilePath).HasMaxLength(1000);
-            builder.Property(e => e.ContentType).HasMaxLength(100);
-            builder.Property(e => e.FileSize).HasColumnType("decimal(9,3)");
-         
+            builder.Property(e => e.Name).HasMaxLength(150);
+            builder.Property(e => e.Description).HasMaxLength(500);
+
+
         }
     }
 }

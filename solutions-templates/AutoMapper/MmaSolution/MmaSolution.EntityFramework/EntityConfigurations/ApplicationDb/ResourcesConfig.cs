@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MmaSolution.EntityFramework.EntityConfigurations;
+namespace MmaSolution.EntityFramework.EntityConfigurations.ApplicationDb;
 
 public class ResourcesConfig : IEntityTypeConfiguration<Resource>
 {

@@ -31,8 +31,6 @@ public class MappingProfile : IRegister
         config.NewConfig<AppUserToken, AppUserTokenReadModel>();
         config.NewConfig<Attachment, AttachmentModifyModel>();
         config.NewConfig<Attachment, AttachmentReadModel>();
-        config.NewConfig<ElmahError, ElmahErrorModifyModel>();
-        config.NewConfig<ElmahError, ElmahErrorReadModel>();
         config.NewConfig<Language, LanguageModifyModel>();
         config.NewConfig<Language, LanguageReadModel>();
         config.NewConfig<Notification, NotificationModifyModel>();
