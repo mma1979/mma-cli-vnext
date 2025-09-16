@@ -11,7 +11,10 @@ public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applicati
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection") ?? "Data Source=.;Initial Catalog=application-db;TrustServerCertificate=True;User ID=sa; Password=Abc@1234; Application Name=MmaSolution";
-        optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly("AuthenticationDbMigrations"));
+        optionsBuilder.UseSqlServer(connectionString, b => {
+            b.MigrationsAssembly("ApplicationDbMigrations");
+            b.MigrationsHistoryTable("ApplicationDbMigrationsHistory", "ef");
+        });
         return new ApplicationDbContext(optionsBuilder.Options);
     }
 }

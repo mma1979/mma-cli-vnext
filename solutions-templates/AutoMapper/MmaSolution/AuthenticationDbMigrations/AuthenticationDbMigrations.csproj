@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MmaSolution\MmaSolution.EntityFramework\MmaSolution.EntityFramework.csproj" />
+    <ProjectReference Include="..\MmaSolution.EntityFramework\MmaSolution.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

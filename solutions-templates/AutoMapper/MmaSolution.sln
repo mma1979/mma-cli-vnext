@@ -33,9 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{7400DA3E
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationDbMigrations", "AuthenticationDbMigrations\AuthenticationDbMigrations.csproj", "{89E79486-A26B-4336-9C5A-E44B5645B381}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationDbMigrations", "MmaSolution\AuthenticationDbMigrations\AuthenticationDbMigrations.csproj", "{89E79486-A26B-4336-9C5A-E44B5645B381}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationDbMigrations", "ApplicationDbMigrations\ApplicationDbMigrations.csproj", "{9B372FA9-1150-46D4-BB8F-AB940C6A6F9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationDbMigrations", "MmaSolution\ApplicationDbMigrations\ApplicationDbMigrations.csproj", "{9B372FA9-1150-46D4-BB8F-AB940C6A6F9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

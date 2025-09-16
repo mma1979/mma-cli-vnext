@@ -80,8 +80,7 @@
             builder.HasData(new
             {
                 Id = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
-                Hash = -1579056263,
-                FullName = "Admin",
+                FullName = "Super Admin",
                 TwoFactorMethod = TwoFactorMethods.Email,
                 CreatedDate = new DateTime(2025, 7, 23),
                 IsDeleted = false,

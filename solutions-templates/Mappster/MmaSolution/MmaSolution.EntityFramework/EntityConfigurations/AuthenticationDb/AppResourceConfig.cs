@@ -40,6 +40,16 @@ public class AppResourceConfig : IEntityTypeConfiguration<AppResource>
 
         builder.HasData(new AppResource(new()
         {
+            Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61738"),
+            Url = "*",
+            Description = "Match all resources for admin",
+            ResourceType = ResourceTypes.API,
+            CreatedBy = new Guid("d3e96e09-d61d-4f99-aeb7-08dcbeb427c4"),
+            CreatedDate = new DateTime(2025, 7, 23),
+            IsDeleted = false
+        }), 
+        new AppResource(new()
+        {
             Id = new Guid("f10e8ad9-8458-4a22-81be-908f6aa61739"),
             Url = "api/account",
             Description = null,
