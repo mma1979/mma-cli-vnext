@@ -2,7 +2,7 @@
 
 [![Breakall](https://img.shields.io/badge/BreakAll-true-red?style=flat-square)](https://img.shields.io/badge/BreakAll-true-red?style=flat-square) 
 ![build and test](https://img.shields.io/github/actions/workflow/status/abpframework/abp/build-and-test.yml?branch=dev&style=flat-square)
-[![NuGet](https://img.shields.io/badge/nugett-v9.0.4-blue?style=flat-square)](https://www.nuget.org/packages/mma-cli)
+[![NuGet](https://img.shields.io/badge/nugett-v9.0.6-blue?style=flat-square)](https://www.nuget.org/packages/mma-cli)
 
 ![MMA cli](https://i.imgur.com/wxeEDiY.png)
 
@@ -13,7 +13,7 @@
 |  |\/|  | |  |\/|  |   /  /_\  \   
 |  |  |  | |  |  |  |  /  _____  \  
 |__|  |__| |__|  |__| /__/     \__\ 
-                                    
+									
 ```
 
 MMA Cli is a complete **Code Generator** based on **ASP.NET Core** to create **modern APIs** by following the software development **best practices** and the **latest technologies**.

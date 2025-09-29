@@ -85,12 +85,14 @@ public sealed class SolutionBuilder
     private void RenameDirectoriesAndFiles()
     {
         // Rename project directories
-        var dirs = Directory.GetDirectories(ProjectsPath);
+        var dirs = Directory.GetDirectories(ProjectsPath)
+            .Where(dir => dir.Contains(_config.TemplateName));
         Parallel.ForEach(dirs, dir =>
             Directory.Move(dir, dir.Replace(_config.TemplateName, SolutionName)));
 
         // Rename .csproj files
-        var csprojFiles = Directory.GetFiles(ProjectsPath, "*.csproj", SearchOption.AllDirectories);
+        var csprojFiles = Directory.GetFiles(ProjectsPath, "*.csproj", SearchOption.AllDirectories)
+             .Where(file => file.Contains(_config.TemplateName));
         Parallel.ForEach(csprojFiles, file =>
             File.Move(file, file.Replace(_config.TemplateName, SolutionName)));
     }
