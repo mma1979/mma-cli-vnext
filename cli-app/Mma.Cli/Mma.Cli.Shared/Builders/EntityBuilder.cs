@@ -192,7 +192,7 @@ public sealed class EntityBuilder
 
     private void UpdateMapperProfile()
     {
-        var profilePath = Path.Combine(_config.ProjectsPath, $"{_config.SolutionName}.Services", "ServicesDI.cs");
+        var profilePath = Path.Combine(_config.ProjectsPath, $"{_config.SolutionName}.Core", "MappingProfile.cs");
         var updater = new AutoMapperProfileUpdater(_fileWriter);
         updater.UpdateProfile(profilePath, _config);
     }
@@ -367,9 +367,9 @@ public class DependencyInjectionUpdater
         var lastSemicolonIndex = lines.FindLastIndex(l => l.EndsWith("return builder;"));
         if (lastSemicolonIndex >= 0)
         {
-            var configTemplate = "builder.Services.AddTransient<$EntityNameService>();"
+            var configTemplate = "builder.Services.AddTransient<$EntityNameService>();\n"
                 .Replace("$EntityName", config.ComponentName);
-            lines.Insert(lastSemicolonIndex + 1, configTemplate);
+            lines.Insert(lastSemicolonIndex - 1, configTemplate);
         }
 
         _fileWriter.WriteLines(filePath, lines);

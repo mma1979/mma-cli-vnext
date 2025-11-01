@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/0b9d6f65-0261-4439-b6ab-c5c2882f8f09/resourceGroups/goldenia-rg/providers/microsoft.insights/components/goldenia-app</ApplicationInsightsResourceId>
-    <UserSecretsId>4c5b977b-7aaf-494f-939c-c383b3b75f83</UserSecretsId>
+    <UserSecretsId>MmaSolution-4c5b977b-7aaf-494f-939c-c383b3b75f83</UserSecretsId>
 		<Nullable>disable</Nullable>
   </PropertyGroup>
 

@@ -1,5 +1,7 @@
-﻿global using System.Diagnostics;
+﻿global using System.IO;
+global using System.Diagnostics;
 global using System.Reflection;
+global using System.Text.Json;
 global using Mma.Cli.Shared.Builders;
 global using Mma.Cli.Shared.Consts;
 global using Mma.Cli.Shared.Helpers;

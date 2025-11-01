@@ -11,6 +11,7 @@
         public long Timestamp { get; set; } = DateTime.UtcNow.ToLinuxTime();
 
         public bool ShowAll { get; set; } = false;
+        public string Fields { get; set; }
 
         public override int GetHashCode()
         {
