@@ -9,7 +9,7 @@ using $SolutionName.Core.Validations;
 
 using FluentValidation.Results;
 
-using Newtonsoft.Json;
+using System.Text.Json;
 
 using System;
 using System.Collections.Generic;
@@ -47,7 +47,7 @@ namespace $SolutionName.Core.Database.Tables
             if (!result.IsValid)
             {
                 var messages = result.Errors.Select(e => e.ErrorMessage);
-                throw new HttpException(LoggingEvents.Constractor_ERROR, JsonConvert.SerializeObject(messages));
+                throw new HttpException(LoggingEvents.Constractor_ERROR, JsonSerializer.Serialize(messages));
             }
 
             
@@ -61,7 +61,7 @@ namespace $SolutionName.Core.Database.Tables
             if (!result.IsValid)
             {
                 var messages = result.Errors.Select(e => e.ErrorMessage);
-                throw new HttpException(LoggingEvents.Constractor_ERROR, JsonConvert.SerializeObject(messages));
+                throw new HttpException(LoggingEvents.Constractor_ERROR, JsonSerializer.Serialize(messages));
             }
 
            

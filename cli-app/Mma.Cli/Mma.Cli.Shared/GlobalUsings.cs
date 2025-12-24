@@ -2,7 +2,7 @@
 global using Mma.Cli.Shared.Consts;
 global using Mma.Cli.Shared.Helpers;
 global using Mma.Cli.Shared.Models;
-global using Newtonsoft.Json;
+global using System.Text.Json;
 global using System.Resources;
 global using System.Text;
 global using System.Text.RegularExpressions;

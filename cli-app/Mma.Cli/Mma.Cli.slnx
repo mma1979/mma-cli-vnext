@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Mma.Cli.App/Mma.Cli.App.csproj" />
   <Project Path="Mma.Cli.Shared/Mma.Cli.Shared.csproj" />
+  <Project Path="Mma.Cli.Tests/Mma.Cli.Tests.csproj" />
   <Project Path="Mma.Cli.UI/Mma.Cli.UI.csproj" Id="be93ce91-158f-4925-8d5f-a82d3a99c0ed" />
 </Solution>

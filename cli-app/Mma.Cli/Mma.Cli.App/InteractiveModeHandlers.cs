@@ -8,7 +8,7 @@ internal class InteractiveModeHandlers
     public static readonly string Version = Assembly.GetEntryAssembly()!
        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "9.0.1";
 
-    public static async Task<int> HandleInteractiveModeAsync()
+    public async Task<int> HandleInteractiveModeAsync()
     {
         var command = Prompt.Select("Select your command",
             [Commands.NEW, Commands.GENERATE, Commands.UI, Commands.WATCH],
@@ -25,7 +25,7 @@ internal class InteractiveModeHandlers
 
     }
 
-    private static int HandleInteractiveNew()
+    private int HandleInteractiveNew()
     {
         var solutionName = Prompt.Input<string>("Enter Solution Name");
         var mapper = Prompt.Select("Select the Mapper",
@@ -40,7 +40,7 @@ internal class InteractiveModeHandlers
         return 0;
     }
 
-    private static int HandleInteractiveGenerate()
+    private int HandleInteractiveGenerate()
     {
         var componentType = Prompt.Select("Select Component",
             [
@@ -62,7 +62,7 @@ internal class InteractiveModeHandlers
         };
     }
 
-    private static async Task<int> HandleUICommand()
+    private async Task<int> HandleUICommand()
     {
         try
         {
@@ -99,20 +99,20 @@ internal class InteractiveModeHandlers
         }
     }
 
-    private static int HandleWatch()
+    private int HandleWatch()
     {
         Output.Error("Watch command is not yet implemented");
         return -1;
     }
 
-    private static int HandleInvalidCommand()
+    private int HandleInvalidCommand()
     {
         Output.Error("Invalid Command");
         BuildHelper.Help(Version);
         return -1;
     }
 
-    private static int GenerateEntityInteractive(bool performRemove)
+    private int GenerateEntityInteractive(bool performRemove)
     {
         var entityName = Prompt.Input<string>("Enter Entity Name");
         var pkType = Prompt.Select("Select PK type",
@@ -130,7 +130,7 @@ internal class InteractiveModeHandlers
         return 0;
     }
 
-    private static int GeneratePropertyInteractive(bool performRemove)
+    private int GeneratePropertyInteractive(bool performRemove)
     {
         var entityName = Prompt.Input<string>("Enter Entity Name");
         var propertyName = Prompt.Input<string>("Enter Property Name");
@@ -151,7 +151,7 @@ internal class InteractiveModeHandlers
         return 0;
     }
 
-    private static int GenerateRelationInteractive(bool performRemove)
+    private int GenerateRelationInteractive(bool performRemove)
     {
         var parentEntityName = Prompt.Input<string>("Enter Reference Entity Name");
         var childEntityName = Prompt.Input<string>("Enter Child Entity Name");
@@ -172,7 +172,7 @@ internal class InteractiveModeHandlers
     }
 
     // Helper methods for building command arguments
-    private static string[] BuildEntityArgs(string entityName, string pkType, bool generateApi, bool performRemove)
+    private string[] BuildEntityArgs(string entityName, string pkType, bool generateApi, bool performRemove)
     {
         var args = new List<string> { "g", "e", entityName, pkType, Flags.MapperFlag, BuildHelper.DetectMapper() };
         if (!generateApi) args.Add("--no-api");
@@ -180,21 +180,21 @@ internal class InteractiveModeHandlers
         return args.ToArray();
     }
 
-    private static string[] BuildPropertyArgs(string entityName, string propertyName, string pType, bool nullable, bool performRemove)
+    private string[] BuildPropertyArgs(string entityName, string propertyName, string pType, bool nullable, bool performRemove)
     {
         var args = new List<string> { "g", "p", entityName, propertyName, pType, nullable.ToString().ToLower() };
         if (performRemove) args.Add("--remove");
         return args.ToArray();
     }
 
-    private static string[] BuildRelationArgs(string parentEntity, string childEntity, string foreignKey,  bool performRemove)
+    private string[] BuildRelationArgs(string parentEntity, string childEntity, string foreignKey,  bool performRemove)
     {
         var args = new List<string> { "g", "r", parentEntity, childEntity, foreignKey };
         if (performRemove) args.Add("--remove");
         return args.ToArray();
     }
 
-    private static void LogEquivalentCommand(string type, params object[] parameters)
+    private void LogEquivalentCommand(string type, params object[] parameters)
     {
         var commandParts = new List<string> { "mma", "g" };
         commandParts.AddRange(parameters.Select(p => p.ToString()!));

@@ -35,7 +35,7 @@ public class ImportFactory
 
         var mmaProjectPah = Path.Combine(SolutionPath, ".mma", "project.mma");
         var json = File.ReadAllText(mmaProjectPah, Encoding.UTF8);
-        var body = JsonConvert.DeserializeObject<ProjectDumpModel>(json)!;
+        var body = JsonSerializer.Deserialize<ProjectDumpModel>(json)!;
 
         var client = new RestClient(BaseUrl);
         var request = new RestRequest("api/projects/import", Method.Post);

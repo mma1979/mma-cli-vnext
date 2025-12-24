@@ -5,12 +5,12 @@ using CliWrap;
 
 namespace Mma.Cli.App;
 
-internal static class CommandLineHandlers
+internal class CommandLineHandlers
 {
     public static readonly string Version =  Assembly.GetEntryAssembly()!
         .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "9.0.1";
 
-    public static async Task<int> HandleCommandLineAsync(string[] args)
+    public async Task<int> HandleCommandLineAsync(string[] args)
     {
         var command = args[0].ToLowerInvariant();
 
@@ -28,7 +28,7 @@ internal static class CommandLineHandlers
 
     
 
-    private static async Task<int> HandleNewCommand(string[] args)
+    private async Task<int> HandleNewCommand(string[] args)
     {
         await SolutionBuilder
             .New(args)
@@ -38,7 +38,7 @@ internal static class CommandLineHandlers
         return 0;
     }
 
-    private static int HandleGenerateCommand(string[] args)
+    private int HandleGenerateCommand(string[] args)
     {
         if (args.Length < 2)
         {
@@ -57,7 +57,7 @@ internal static class CommandLineHandlers
         };
     }
 
-    private static int HandleEntityGeneration(string[] args)
+    private int HandleEntityGeneration(string[] args)
     {
         EntityBuilder.CreateFromArgs(args)
             .GenerateAll(!args.Contains(Flags.ApiFlag));
@@ -66,7 +66,7 @@ internal static class CommandLineHandlers
         return 0;
     }
 
-    private static int HandleVersionCommand()
+    private int HandleVersionCommand()
     {
         Output.Success($"""
 .___  ___. .___  ___.      ___      
@@ -80,20 +80,20 @@ internal static class CommandLineHandlers
 """);
         return 0;
     }
-    private static int HandleInvalidCommand()
+    private int HandleInvalidCommand()
     {
         Output.Error("Invalid Command");
         BuildHelper.Help(Version);
         return -1;
     }
 
-    private static int HandleInvalidComponent()
+    private int HandleInvalidComponent()
     {
         Output.Error("Invalid Component");
         BuildHelper.Help(Version);
         return -1;
     }
-    private static int HandlePropertyGeneration(string[] args)
+    private int HandlePropertyGeneration(string[] args)
     {
         try
         {
@@ -112,7 +112,7 @@ internal static class CommandLineHandlers
         }
     }
 
-    private static int HandleRelationGeneration(string[] args)
+    private int HandleRelationGeneration(string[] args)
     {
         RelationsBuilder.New(args)
             .UpdateParentEntity()
@@ -125,19 +125,19 @@ internal static class CommandLineHandlers
         return 0;
     }
 
-    private static int HandleHelpCommand()
+    private int HandleHelpCommand()
     {
         BuildHelper.Help(Version);
         return 0;
     }
 
-    private static int HandleImportCommand(string[] args)
+    private int HandleImportCommand(string[] args)
     {
         ImportFactory.New(args).Import();
         return 0;
     }
 
-    private static async Task<int> HandleUICommand()
+    private async Task<int> HandleUICommand()
     {
         try
         {

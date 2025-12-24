@@ -1,4 +1,4 @@
-﻿
+﻿using System.Text.Json;
 
 namespace Mma.Cli.Shared.Builders;
 
@@ -151,7 +151,8 @@ public sealed class SolutionBuilder
             Relations = new List<object>()
         };
 
-        var json = JsonConvert.SerializeObject(projectData, Newtonsoft.Json.Formatting.Indented);
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        var json = JsonSerializer.Serialize(projectData, options);
         var projectFile = Path.Combine(mmaDir.FullName, "project.mma");
         File.WriteAllText(projectFile, json, Encoding.UTF8);
     }

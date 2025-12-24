@@ -1,4 +1,9 @@
-﻿
+﻿using Microsoft.Extensions.DependencyInjection;
+
+var services = new ServiceCollection();
+ConfigureServices(services);
+var serviceProvider = services.BuildServiceProvider();
+
 var configDirectory = Path.Combine(
     Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
     ".mma");
@@ -42,8 +47,8 @@ Console.CancelKeyPress += Events.OnCancelKeyPress;
 try
 {
     var exitCode = args.Length > 0
-        ? await CommandLineHandlers.HandleCommandLineAsync(args)
-        : await InteractiveModeHandlers.HandleInteractiveModeAsync();
+        ? await serviceProvider.GetRequiredService<CommandLineHandlers>().HandleCommandLineAsync(args)
+        : await serviceProvider.GetRequiredService<InteractiveModeHandlers>().HandleInteractiveModeAsync();
 
     Environment.Exit(exitCode);
 }
@@ -51,6 +56,12 @@ catch (Exception ex)
 {
     Output.Error($"An error occurred: {ex.Message}");
     Environment.Exit(-1);
+}
+
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddSingleton<CommandLineHandlers>();
+    services.AddSingleton<InteractiveModeHandlers>();
 }
 
 
