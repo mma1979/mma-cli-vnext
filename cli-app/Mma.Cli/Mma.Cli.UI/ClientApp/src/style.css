@@ -1,9 +1,11 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   --background: #0f172a;
   --foreground: #f8fafc;
   --emerald: #10b981;
+  --grid-size: 20px;
+  --grid-color: rgba(148, 163, 184, 0.15);
 }
 
 body {

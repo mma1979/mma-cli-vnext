@@ -143,6 +143,32 @@ public class SchemaController : ControllerBase
         var project = await _databaseService.ImportTablesAsync(request.ConnectionString, request.Provider, request.TableNames);
         return Ok(project);
     }
+
+    [HttpPost("project/create")]
+    public async Task<IActionResult> CreateSolution([FromBody] CreateSolutionRequest request)
+    {
+        try
+        {
+            var builder = string.IsNullOrEmpty(request.Path)
+                ? Mma.Cli.Shared.Builders.SolutionBuilder.New(request.SolutionName, request.Mapper)
+                : Mma.Cli.Shared.Builders.SolutionBuilder.New(request.SolutionName, request.Mapper, request.Path);
+
+            await builder.BuildAsync();
+
+            return Ok(new { Message = "Solution created successfully" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+}
+
+public class CreateSolutionRequest
+{
+    public string SolutionName { get; set; } = "";
+    public string Mapper { get; set; } = "AutoMapper";
+    public string? Path { get; set; }
 }
 
 public class DbConnectionRequest

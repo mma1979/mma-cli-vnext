@@ -4,6 +4,7 @@ namespace Mma.Cli.Shared.Builders;
 
 public sealed class SolutionBuilder
 {
+    private readonly string _cwd;
     private readonly MapperConfig _config;
 
     public string SolutionName { get; }
@@ -11,15 +12,19 @@ public sealed class SolutionBuilder
     public string ProjectsPath { get; private set; } = "";
     public string Mapper { get; }
 
-    private SolutionBuilder(string solutionName, string mapper)
+    private SolutionBuilder(string solutionName, string mapper, string? cwd = null)
     {
         SolutionName = solutionName;
         Mapper = mapper;
+        _cwd = cwd ?? Directory.GetCurrentDirectory();
         _config = GetMapperConfig(mapper);
     }
 
     public static SolutionBuilder New(string solutionName, string mapper)
         => new(solutionName, mapper);
+
+    public static SolutionBuilder New(string solutionName, string mapper, string cwd)
+        => new(solutionName, mapper, cwd);
 
     public static SolutionBuilder New(string[] args)
     {
@@ -49,7 +54,7 @@ public sealed class SolutionBuilder
 
     private SolutionBuilder CreateSolutionDirectory()
     {
-        SolutionPath = Path.Combine(Directory.GetCurrentDirectory(), SolutionName);
+        SolutionPath = Path.Combine(_cwd, SolutionName);
         Output.Warning($"Creating {SolutionPath}");
         Directory.CreateDirectory(SolutionPath);
         return this;

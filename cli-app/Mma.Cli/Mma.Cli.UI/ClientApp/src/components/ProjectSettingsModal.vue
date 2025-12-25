@@ -14,6 +14,20 @@ const selectMapper = (m: string) => {
   store.mapper = m
   showMapperDropdown.value = false
 }
+
+const handleSave = async () => {
+  if (!store.solutionName) {
+    alert('Please enter a solution name')
+    return
+  }
+  
+  const result = await store.createSolution()
+  if (result.success) {
+    emit('close')
+  } else {
+    alert(`Error: ${result.error}`)
+  }
+}
 </script>
 
 <template>
@@ -111,10 +125,12 @@ const selectMapper = (m: string) => {
           Cancel
         </button>
         <button 
-          @click="emit('close')"
-          class="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 active:scale-95 uppercase tracking-widest"
+          @click="handleSave"
+          :disabled="store.isGenerating"
+          class="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/20 active:scale-95 uppercase tracking-widest flex items-center gap-2"
         >
-          Save
+          <span v-if="store.isGenerating" class="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
+          {{ store.isGenerating ? 'Building...' : 'Save' }}
         </button>
       </div>
     </div>
