@@ -144,20 +144,10 @@ public sealed class SolutionBuilder
         var mmaDir = Directory.CreateDirectory(Path.Combine(SolutionPath, ".mma"));
         mmaDir.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
-        var projectData = new
-        {
-            Project = new
-            {
-                Name = SolutionName,
-                Path = SolutionPath
-            },
-            Entities = new List<object>(),
-            Rows = new List<object>(),
-            Relations = new List<object>()
-        };
+        var schema = new SchemaModel();
 
         var options = new JsonSerializerOptions { WriteIndented = true };
-        var json = JsonSerializer.Serialize(projectData, options);
+        var json = JsonSerializer.Serialize(schema, options);
         var projectFile = Path.Combine(mmaDir.FullName, $"{SolutionName}.json");
         File.WriteAllText(projectFile, json, Encoding.UTF8);
     }

@@ -79,9 +79,56 @@ export const useSchemaStore = defineStore("schema", () => {
         : "/api/schema/load";
       const response = await fetch(url);
       const data = await response.json();
-      nodes.value = data.nodes || [];
-      edges.value = data.edges || [];
-      solutionName.value = data.solutionName || "";
+      
+      if (data.Tables) {
+        nodes.value = data.Tables.map((t: any) => ({
+          id: t.Id,
+          type: "table",
+          label: t.Name,
+          position: { x: t.X, y: t.Y },
+          data: {
+            name: t.Name,
+            columns: t.Columns.map((c: any) => ({
+              id: c.Id,
+              name: c.Name,
+              type: c.Type,
+              isPk: c.IsPrimaryKey,
+              isNullable: c.IsNullable,
+              isNotNull: c.IsNotNull
+            })),
+            apiSettings: {
+              generateController: t.GenSettings.GenerateController,
+              generateService: t.GenSettings.GenerateService,
+              operations: [
+                t.GenSettings.AllowRead ? 'ReadList' : null,
+                t.GenSettings.AllowReadById ? 'ReadSingle' : null,
+                t.GenSettings.AllowCreate ? 'Create' : null,
+                t.GenSettings.AllowUpdate ? 'Update' : null,
+                t.GenSettings.AllowDelete ? 'Delete' : null
+              ].filter(Boolean)
+            }
+          }
+        }));
+      } else {
+        nodes.value = [];
+      }
+
+      if (data.Relationships) {
+        edges.value = data.Relationships.map((r: any) => ({
+          id: r.Id,
+          source: r.SourceTableId,
+          target: r.TargetTableId,
+          sourceHandle: `${r.SourceColumnId}-right`,
+          targetHandle: `${r.TargetColumnId}-left`,
+          type: "default",
+          animated: true,
+          style: { stroke: "#10b981", strokeWidth: 2 }
+        }));
+      } else {
+        edges.value = [];
+      }
+
+      solutionName.value = data.solutionName || ""; // Keep if still relevant
       mapper.value = data.mapper || "AutoMapper";
     } catch (error) {
       console.error("Failed to load schema:", error);
@@ -91,17 +138,14 @@ export const useSchemaStore = defineStore("schema", () => {
   async function saveSchema() {
     isSaving.value = true;
     try {
+      const schema = getSimplifiedSchema();
+
       await fetch("/api/schema/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           path: cwd.value,
-          schema: {
-            nodes: nodes.value,
-            edges: edges.value,
-            solutionName: solutionName.value,
-            mapper: mapper.value,
-          },
+          schema: schema
         }),
       });
     } catch (error) {
@@ -109,6 +153,41 @@ export const useSchemaStore = defineStore("schema", () => {
     } finally {
       isSaving.value = false;
     }
+  }
+
+  function getSimplifiedSchema() {
+    return {
+      Tables: nodes.value.map(n => ({
+        Id: n.id,
+        Name: n.data.name,
+        X: n.position.x,
+        Y: n.position.y,
+        Columns: n.data.columns.map((c: any) => ({
+          Id: c.id || Math.random().toString(36).substr(2, 9),
+          Name: c.name,
+          Type: c.type,
+          IsPrimaryKey: c.isPk,
+          IsNullable: c.isNullable,
+          IsNotNull: !c.isNullable
+        })),
+        GenSettings: {
+          GenerateController: n.data.apiSettings.generateController,
+          GenerateService: n.data.apiSettings.generateService,
+          AllowRead: n.data.apiSettings.operations.includes('ReadList'),
+          AllowReadById: n.data.apiSettings.operations.includes('ReadSingle'),
+          AllowCreate: n.data.apiSettings.operations.includes('Create'),
+          AllowUpdate: n.data.apiSettings.operations.includes('Update'),
+          AllowDelete: n.data.apiSettings.operations.includes('Delete')
+        }
+      })),
+      Relationships: edges.value.map(e => ({
+        Id: e.id,
+        SourceTableId: e.source,
+        SourceColumnId: e.sourceHandle?.split('-')[0],
+        TargetTableId: e.target,
+        TargetColumnId: e.targetHandle?.split('-')[0]
+      }))
+    };
   }
 
   async function generateCode() {
@@ -119,12 +198,7 @@ export const useSchemaStore = defineStore("schema", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           path: cwd.value,
-          schema: {
-            nodes: nodes.value,
-            edges: edges.value,
-            solutionName: solutionName.value,
-            mapper: mapper.value,
-          },
+          schema: getSimplifiedSchema(),
         }),
       });
       if (!response.ok) throw new Error("Generation failed");
@@ -202,7 +276,7 @@ export const useSchemaStore = defineStore("schema", () => {
 
       if (data.entities) {
         data.entities.forEach((entity: any, index: number) => {
-          const id = (nodes.value.length + newNodes.length + 1).toString();
+          const id = Math.random().toString(36).substr(2, 9);
           const tableName = entity.entityName || entity.name;
           tableToIdMap[tableName] = id;
 
@@ -214,12 +288,14 @@ export const useSchemaStore = defineStore("schema", () => {
             data: {
               name: tableName,
               columns: entity.rows?.map((r: any) => ({
+                id: Math.random().toString(36).substr(2, 9),
                 name: r.columnName,
                 type: r.dataType || "VARCHAR",
                 isPk: r.columnName.toLowerCase() === "id", // Simple PK heuristic
                 isNullable: r.nullable ?? true,
+                isNotNull: !(r.nullable ?? true)
               })) || [
-                { name: "id", type: "INT", isPk: true, isNullable: false },
+                { id: Math.random().toString(36).substr(2, 9), name: "id", type: "INT", isPk: true, isNullable: false, isNotNull: true },
               ],
               apiSettings: {
                 generateController: true,
