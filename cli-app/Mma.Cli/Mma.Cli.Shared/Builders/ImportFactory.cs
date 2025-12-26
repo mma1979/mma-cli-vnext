@@ -33,7 +33,7 @@ public class ImportFactory
     public ImportFactory Import()
     {
 
-        var mmaProjectPah = Path.Combine(SolutionPath, ".mma", "project.mma");
+        var mmaProjectPah = Path.Combine(SolutionPath, ".mma", $"{SolutionName}.json");
         var json = File.ReadAllText(mmaProjectPah, Encoding.UTF8);
         var body = JsonSerializer.Deserialize<ProjectDumpModel>(json)!;
 

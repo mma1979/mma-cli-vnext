@@ -8,17 +8,32 @@ namespace Mma.Cli.UI.Controllers;
 public class SchemaController : ControllerBase
 {
     private readonly IDatabaseService _databaseService;
-    private string SchemaPath => Path.Combine(Directory.GetCurrentDirectory(), "schemaforge.json");
-
     public SchemaController(IDatabaseService databaseService)
     {
         _databaseService = databaseService;
     }
 
+    private string GetSchemaFilePath(string? requestPath)
+    {
+        var targetDir = string.IsNullOrEmpty(requestPath) ? Directory.GetCurrentDirectory() : requestPath;
+        var mmaDir = Path.Combine(targetDir, ".mma");
+
+        if (Directory.Exists(mmaDir))
+        {
+            var schemaFiles = Directory.GetFiles(mmaDir, "*.json");
+            if (schemaFiles.Length > 0)
+            {
+                return schemaFiles[0];
+            }
+        }
+
+        return Path.Combine(targetDir, "schemaforge.json");
+    }
+
     [HttpGet("load")]
     public IActionResult Load([FromQuery] string? path)
     {
-        var targetPath = string.IsNullOrEmpty(path) ? SchemaPath : Path.Combine(path, "schemaforge.json");
+        var targetPath = GetSchemaFilePath(path);
         
         if (!System.IO.File.Exists(targetPath))
         {
@@ -32,7 +47,7 @@ public class SchemaController : ControllerBase
     [HttpPost("save")]
     public IActionResult Save([FromBody] SchemaSaveRequest request)
     {
-        var targetPath = string.IsNullOrEmpty(request.Path) ? SchemaPath : Path.Combine(request.Path, "schemaforge.json");
+        var targetPath = GetSchemaFilePath(request.Path);
         var json = System.Text.Json.JsonSerializer.Serialize(request.Schema, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
         System.IO.File.WriteAllText(targetPath, json);
         return Ok(new { Message = "Schema saved successfully" });
@@ -155,7 +170,7 @@ public class SchemaController : ControllerBase
 
             await builder.BuildAsync();
 
-            return Ok(new { Message = "Solution created successfully" });
+            return Ok(new { Message = "Solution created successfully", path = builder.SolutionPath });
         }
         catch (Exception ex)
         {

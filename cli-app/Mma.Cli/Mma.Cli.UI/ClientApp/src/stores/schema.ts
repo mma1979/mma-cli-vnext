@@ -153,6 +153,10 @@ export const useSchemaStore = defineStore("schema", () => {
         const errorData = await response.json();
         throw new Error(errorData.message || "Solution creation failed");
       }
+      const data = await response.json();
+      if (data.path) {
+        cwd.value = data.path;
+      }
       return { success: true };
     } catch (error: any) {
       console.error("Failed to create solution:", error);

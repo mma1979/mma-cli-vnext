@@ -158,7 +158,7 @@ public sealed class SolutionBuilder
 
         var options = new JsonSerializerOptions { WriteIndented = true };
         var json = JsonSerializer.Serialize(projectData, options);
-        var projectFile = Path.Combine(mmaDir.FullName, "project.mma");
+        var projectFile = Path.Combine(mmaDir.FullName, $"{SolutionName}.json");
         File.WriteAllText(projectFile, json, Encoding.UTF8);
     }
 
